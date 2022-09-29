@@ -1,0 +1,55 @@
+"use strict";
+
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface
+      .createTable("emp_pelatihan", {
+        id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+          allowNull: false,
+        },
+        jns_pelatihan: {
+          type: Sequelize.STRING,
+        },
+        wktu_selesai: {
+          type: Sequelize.DATE,
+        },
+        ket: {
+          type: Sequelize.TEXT,
+        },
+        upload: {
+          type: Sequelize.TEXT,
+        },
+        emp_id_pel: {
+          type: Sequelize.UUID,
+          references: {
+            model: "employe",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+      })
+      .then(() =>
+        queryInterface.addIndex("emp_pelatihan", [
+          "jns_pelatihan",
+          "wktu_selesai",
+          "ket",
+        ])
+      );
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable("emp_pelatihan");
+  },
+};

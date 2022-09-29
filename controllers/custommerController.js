@@ -1,0 +1,189 @@
+const model = require("../models");
+const { Op } = require("sequelize");
+const { v4: uuidv4 } = require("uuid");
+const Pagination = require("../config/pagging");
+const url = require("url");
+
+const getAllCustommer = async (req, res) => {
+  try {
+    const search = req.query.search || "";
+    const hostname = req.headers.host;
+    const pathname = url.parse(req.url).pathname;
+    const pagination = new Pagination(
+      req.query.page,
+      req.query.perPage,
+      hostname,
+      pathname
+    );
+    const totalRows = await model.customer.count();
+    const results = await model.customer.findAll({
+      where: {
+        [Op.or]: [
+          {
+            nama: {
+              [Op.like]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+      include: [
+        {
+          model: model.cus_kontak,
+          as: "cuskontak",
+          where: {
+            [Op.or]: [
+              {
+                contact_person: {
+                  [Op.like]: "%" + search + "%",
+                },
+              },
+            ],
+          },
+        },
+      ],
+      offset: pagination.page * pagination.perPage,
+      limit: pagination.perPage,
+      order: [["createdAt", "DESC"]],
+    });
+    if (results) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get All Custommer",
+        result: results,
+        page: pagination.page,
+        limit: pagination.perPage,
+        totalData: totalRows,
+        currentPage: pagination.currentPage,
+        nextPage: pagination.next(),
+        previouspage: pagination.prev(),
+      });
+    } else {
+      return res.status(404).json({
+        success: false,
+        massage: "no data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const createNewCustommer = async (req, res) => {
+  try {
+    const result = await model.customer.create(
+      {
+        id: uuidv4(),
+        id_customer: req.body.id_customer,
+        nama: req.body.nama,
+        alamat: req.body.alamat,
+        kota: req.body.kota,
+        email: req.body.email,
+        phone: req.body.phone,
+        alamat_workshop: req.body.alamat_workshop,
+        alamat_penerima: req.body.alamat_penerima,
+        cuskontak: req.body.cuskontak,
+      },
+      {
+        include: ["cuskontak"],
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil nambah data",
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal nambah data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const updateCustommer = async (req, res) => {
+  let id = req.params.id;
+
+  try {
+    console.log(newArrEmppel);
+    const result = await model.customer.update(
+      {
+        id_customer: req.body.customer,
+        nama: req.body.nama,
+        alamat: req.body.alamat,
+        kota: req.body.kota,
+        email: req.body.email,
+        phone: req.body.phone,
+        alamat_workshop: req.body.alamat_workshop,
+        alamat_penerima: req.body.alamat_penerima,
+      },
+      {
+        where: {
+          id: id,
+        },
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil update data",
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const deleteCustommer = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const resDel = await model.customer.destroy({
+      where: {
+        id: id,
+      },
+    });
+    if (resDel) {
+      res.status(200).json({ success: true, massage: "berhasil di hapus" });
+    } else {
+      res.status(404).json({ success: false, massage: "gagal delete" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const getOneCustommer = async (req, res) => {
+  try {
+    const result = await model.customer.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+module.exports = {
+  getAllCustommer,
+  createNewCustommer,
+  updateCustommer,
+  deleteCustommer,
+  getOneCustommer,
+};
