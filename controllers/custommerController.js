@@ -30,15 +30,6 @@ const getAllCustommer = async (req, res) => {
         {
           model: model.cus_kontak,
           as: "cuskontak",
-          where: {
-            [Op.or]: [
-              {
-                contact_person: {
-                  [Op.like]: "%" + search + "%",
-                },
-              },
-            ],
-          },
         },
       ],
       offset: pagination.page * pagination.perPage,
@@ -69,6 +60,18 @@ const getAllCustommer = async (req, res) => {
 };
 
 const createNewCustommer = async (req, res) => {
+  const newArrEmppel = [];
+
+  if (req.body.cuskontak.length !== 0) {
+    const arrEmppel = req.body.cuskontak;
+    for (let index = 0; index < arrEmppel.length; index++) {
+      newArrEmppel.push({
+        contact_person: arrEmppel[index].contact_person,
+        email_person: arrEmppel[index].email_person,
+        contact_person_telp: arrEmppel[index].contact_person_telp,
+      });
+    }
+  }
   try {
     const result = await model.customer.create(
       {
@@ -81,7 +84,7 @@ const createNewCustommer = async (req, res) => {
         phone: req.body.phone,
         alamat_workshop: req.body.alamat_workshop,
         alamat_penerima: req.body.alamat_penerima,
-        cuskontak: req.body.cuskontak,
+        cuskontak: newArrEmppel,
       },
       {
         include: ["cuskontak"],
