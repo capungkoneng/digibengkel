@@ -9,6 +9,7 @@ module.exports = {
       process.env.DB_HOST ||
       "dbdigibengkel.cfgxkpw7j2vp.ap-northeast-1.rds.amazonaws.com",
     dialect: "postgres",
+    port: "5432",
     dialectOptions: {
       ssl: {
         require: true,
@@ -24,6 +25,7 @@ module.exports = {
       process.env.DB_HOST ||
       "dbdigibengkel.cfgxkpw7j2vp.ap-northeast-1.rds.amazonaws.com",
     dialect: "postgres",
+    port: "5432",
     dialectOptions: {
       ssl: {
         require: true,
@@ -39,6 +41,7 @@ module.exports = {
       process.env.DB_HOST ||
       "dbdigibengkel.cfgxkpw7j2vp.ap-northeast-1.rds.amazonaws.com",
     dialect: "postgres",
+    port: "5432",
     dialectOptions: {
       ssl: {
         require: true,

@@ -1,1 +1,2 @@
 20220930	14:32:39	99a4bf74-2fd3-47cf-abcc-e1a0fcebd329	POST	undefined	/api/v1/signup
+20220930	14:44:29	a48e4eee-ed0d-44ee-a4a6-f5f727fb358f	POST	undefined	/api/v1/customer
