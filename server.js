@@ -49,8 +49,9 @@ app.use("/api/v1", api);
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () =>
+// app.listen(process.env.PORT, () =>
   // console.log(`Server Berjalan di: ${ip.address()}:${process.env.PORT}`)
-  console.log(`Server Berjalan http://localhost:${process.env.PORT}`)
-);
+//   console.log(`Server Berjalan http://localhost:${process.env.PORT}`)
+// );
 
+app.listen(3000)
