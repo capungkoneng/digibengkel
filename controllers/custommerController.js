@@ -51,7 +51,7 @@ const getAllCustommer = async (req, res) => {
     } else {
       return res.status(404).json({
         success: false,
-        massage: "no data",
+        massage: "No data",
       });
     }
   } catch (error) {
