@@ -18,7 +18,7 @@ const getAllUsers = async (req, res) => {
     if (result.length > 0) {
       return res.status(200).json({ succes: true, result: result });
     } else {
-      return res.status(404).json({ succes: false, masagge: "no data" });
+      return res.status(404).json({ succes: false, masagge: "No data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });
