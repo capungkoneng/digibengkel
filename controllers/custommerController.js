@@ -111,7 +111,6 @@ const updateCustommer = async (req, res) => {
   let id = req.params.id;
 
   try {
-    console.log(newArrEmppel);
     const result = await model.customer.update(
       {
         id_customer: req.body.customer,
