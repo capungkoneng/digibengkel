@@ -41,14 +41,15 @@ const getAllQuo = async (req, res) => {
           },
         },
         {
-          model: model.quodesk, as: "quodesk"
+          model: model.quodesk,
+          as: "quodesk",
         },
       ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
     });
-    if (results) {
+    if (results.length > 0) {
       return res.status(200).json({
         success: true,
         massage: "Get All Quoutation",

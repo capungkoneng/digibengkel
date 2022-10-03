@@ -30,7 +30,7 @@ const getAllSupplier = async (req, res) => {
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
     });
-    if (results) {
+    if (results.length > 0) {
       return res.status(200).json({
         success: true,
         massage: "Get All Supplier",
@@ -44,7 +44,7 @@ const getAllSupplier = async (req, res) => {
       });
     } else {
       return res.status(404).json({
-        success: true,
+        success: false,
         massage: "no data",
       });
     }

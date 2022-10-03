@@ -40,7 +40,7 @@ const getAllEmployees = async (req, res) => {
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
     });
-    if (results) {
+    if (results.length > 0) {
       return res.status(200).json({
         success: true,
         massage: "Get All Employe",
@@ -54,8 +54,8 @@ const getAllEmployees = async (req, res) => {
       });
     } else {
       return res.status(404).json({
-        massage: "no data",
         success: false,
+        massage: "no data",
       });
     }
   } catch (error) {

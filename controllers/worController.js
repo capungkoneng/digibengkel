@@ -29,14 +29,14 @@ const getAllWor = async (req, res) => {
         },
         {
           model: model.part_wor,
-          as: "partwor"
+          as: "partwor",
         },
       ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
     });
-    if (results) {
+    if (results.length > 0) {
       return res.status(200).json({
         success: true,
         massage: "Get All wor",
