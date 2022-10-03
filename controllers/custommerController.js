@@ -36,7 +36,7 @@ const getAllCustommer = async (req, res) => {
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
     });
-    if (results) {
+    if (results.length > 0) {
       return res.status(200).json({
         success: true,
         massage: "Get All Custommer",
