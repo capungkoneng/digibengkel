@@ -109,9 +109,62 @@ const createNewQuo = async (req, res) => {
   }
 };
 
-const updateQuo = async (req, res) => {};
+const updateQuo = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.quo.update(
+      {
+        address: req.body.address,
+        city: req.body.city,
+        contact: req.body.contact,
+        description: req.body.description,
+        tanggal_quo: new Date(req.body.tanggal_quo),
+        upload: req.file.path,
+      },
+      {
+        where: {
+          id: id,
+        },
+        force: true,
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
-const deleteQuo = async (req, res) => {};
+const deleteQuo = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const resDel = await model.quo.destroy({
+      where: {
+        id: id,
+      },
+    });
+    if (resDel) {
+      res.status(200).json({ success: true, massage: "berhasil di hapus" });
+    } else {
+      res.status(404).json({ success: false, massage: "gagal delete" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
 const getQuo = async (req, res) => {
   try {

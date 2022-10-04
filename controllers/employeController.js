@@ -129,16 +129,6 @@ const updateEmployee = async (req, res) => {
       where: {
         id: id,
       },
-      include: [
-        {
-          model: model.emp_pendidikan,
-          as: "emppen",
-        },
-        {
-          model: model.emp_pelatihan,
-          as: "emppel",
-        },
-      ],
       force: true,
       returning: true,
     });
@@ -259,6 +249,16 @@ const getEmployee = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: model.emp_pendidikan,
+          as: "emppen",
+        },
+        {
+          model: model.emp_pelatihan,
+          as: "emppel",
+        },
+      ],
     });
     if (result) {
       return res.status(200).json({ success: true, msg: result });

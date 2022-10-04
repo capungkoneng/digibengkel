@@ -41,7 +41,7 @@ app.use(
 
 app.get("/", (req, res) => {
   res.json({
-    massage: `Welcome Digi Cuy`,
+    massage: `Welcome Digi Workshop`,
   });
 });
 
@@ -53,5 +53,3 @@ app.listen(process.env.PORT || 3000, () =>
   // console.log(`Server Berjalan di: ${ip.address()}:${process.env.PORT}`)
   console.log(`Server Berjalan http://localhost:${process.env.PORT}`)
 );
-
-// kl

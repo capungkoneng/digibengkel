@@ -78,6 +78,7 @@ router.get("/quotation/:id", qutationController.getQuo);
 router.get("/equipment", equipController.getAllequip);
 router.post("/equipment", equipController.createNewEquip);
 router.put("/equipment/:id", equipController.updateEquip);
+router.put("/equipment/part/:id", equipController.updateEquipPart);
 router.delete("/equipment/:id", equipController.delEquip);
 router.get("/equipment/:id", equipController.getEquip);
 /***************************EQUIPMENT********************************* */

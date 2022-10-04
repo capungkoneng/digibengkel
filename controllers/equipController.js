@@ -30,15 +30,6 @@ const getAllequip = async (req, res) => {
         {
           model: model.part,
           as: "equipmen",
-          where: {
-            [Op.or]: [
-              {
-                part_nama: {
-                  [Op.like]: "%" + search + "%",
-                },
-              },
-            ],
-          },
         },
       ],
       offset: pagination.page * pagination.perPage,
@@ -99,16 +90,121 @@ const createNewEquip = async (req, res) => {
   }
 };
 
-const updateEquip = async (req, res) => {};
+const updateEquip = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.equipment.update(
+      {
+        equip_nama: req.body.equip_nama,
+        description: req.body.description,
+      },
+      {
+        where: {
+          id: id,
+        },
+        force: true,
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
-const delEquip = async (req, res) => {};
+const updateEquipPart = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.part.update(
+      {
+        part_nama: req.body.part_nama,
+        description: req.body.description,
+      },
+      {
+        where: {
+          id: id,
+        },
+        force: true,
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
-const getEquip = async (req, res) => {};
+const delEquip = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const resDel = await model.equipment.destroy({
+      where: {
+        id: id,
+      },
+    });
+    if (resDel) {
+      res.status(200).json({ success: true, massage: "berhasil di hapus" });
+    } else {
+      res.status(404).json({ success: false, massage: "gagal delete" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const getEquip = async (req, res) => {
+  try {
+    const result = await model.equipment.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: model.part,
+          as: "equipmen",
+        },
+      ],
+    });
+    if (result.length > 0) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
 module.exports = {
   getAllequip,
   createNewEquip,
   updateEquip,
+  updateEquipPart,
   delEquip,
   getEquip,
 };

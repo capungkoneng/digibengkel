@@ -12,7 +12,7 @@ const errorHandler = (err, req, res, next) => {
     return res.status(400).send({ msg: err });
   }
   if (typeof err === "Unauthrorized") {
-    return res.status(400).send({ msg: err });
+    return res.status(401).send({ msg: err });
   }
   return res.status(500).send({ msg: err });
 };

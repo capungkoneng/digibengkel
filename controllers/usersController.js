@@ -32,7 +32,7 @@ const registerNewUsers = async (req, res) => {
       where: { username: req.body.username },
     });
     if (user) {
-      return res.status(409).json({ msg: "User already registered" });
+      return res.status(403).json({ msg: "User already registered" });
     }
     const hashpass = await argon2.hash(password);
     const result = await model.user.create({
@@ -118,7 +118,7 @@ const getUsers = async (req, res) => {
         user_id: req.params.id,
       },
     });
-    if (result) {
+    if (result.length > 0) {
       return res.status(200).json({ success: true, result: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });

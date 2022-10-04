@@ -113,7 +113,6 @@ const updateCustommer = async (req, res) => {
   try {
     const result = await model.customer.update(
       {
-        id_customer: req.body.customer,
         nama: req.body.nama,
         alamat: req.body.alamat,
         kota: req.body.kota,
@@ -171,8 +170,14 @@ const getOneCustommer = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: model.cus_kontak,
+          as: "cuskontak",
+        },
+      ],
     });
-    if (result) {
+    if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });
