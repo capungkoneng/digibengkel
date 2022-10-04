@@ -32,6 +32,7 @@ router.get("/users/:id", usersController.getUsers);
 router.get("/customer", custommerController.getAllCustommer);
 router.post("/customer", custommerController.createNewCustommer);
 router.put("/customer/:id", custommerController.updateCustommer);
+router.put("/customer/cuskontak/:id", custommerController.updateCusKontak);
 router.delete("/customer/:id", custommerController.deleteCustommer);
 router.get("/customer/:id", custommerController.getOneCustommer);
 /***************************CUSTOMER********************************* */

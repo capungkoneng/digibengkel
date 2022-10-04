@@ -158,7 +158,7 @@ const getWor = async (req, res) => {
         },
       ],
     });
-    if (result.length > 0) {
+    if (result) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });

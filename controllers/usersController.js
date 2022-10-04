@@ -118,7 +118,7 @@ const getUsers = async (req, res) => {
         user_id: req.params.id,
       },
     });
-    if (result.length > 0) {
+    if (result) {
       return res.status(200).json({ success: true, result: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });

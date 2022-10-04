@@ -145,6 +145,40 @@ const updateCustommer = async (req, res) => {
   }
 };
 
+const updateCusKontak = async (req, res) => {
+  let id = req.params.id;
+
+  try {
+    const result = await model.cus_kontak.update(
+      {
+        contact_person: req.body.contact_person,
+        email_person: req.body.email_person,
+        contact_person_telp: req.body.contact_person_telp,
+      },
+      {
+        where: {
+          id: id,
+        },
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil update data",
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const deleteCustommer = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
@@ -177,7 +211,7 @@ const getOneCustommer = async (req, res) => {
         },
       ],
     });
-    if (result.length > 0) {
+    if (result) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });
@@ -191,6 +225,7 @@ module.exports = {
   getAllCustommer,
   createNewCustommer,
   updateCustommer,
+  updateCusKontak,
   deleteCustommer,
   getOneCustommer,
 };
