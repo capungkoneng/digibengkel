@@ -117,9 +117,56 @@ const createNewWor = async (req, res) => {
 
 const updateWor = async (req, res) => {};
 
-const deleteWor = async (req, res) => {};
+const deleteWor = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const resDel = await model.wor.destroy({
+      where: {
+        id: id,
+      },
+    });
+    if (resDel) {
+      res.status(200).json({ success: true, massage: "berhasil di hapus" });
+    } else {
+      res.status(404).json({ success: false, massage: "gagal delete" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
-const getWor = async (req, res) => {};
+const getWor = async (req, res) => {
+  try {
+    const result = await model.wor.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: model.quo,
+        },
+        {
+          model: model.employe,
+        },
+        {
+          model: model.equipment,
+        },
+        {
+          model: model.part_wor,
+          as: "partwor",
+        },
+      ],
+    });
+    if (result.length > 0) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
 module.exports = {
   getAllWor,
