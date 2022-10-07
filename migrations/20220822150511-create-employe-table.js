@@ -23,8 +23,14 @@ module.exports = {
         nama_karyawan: {
           type: Sequelize.STRING,
         },
-        departement: {
-          type: Sequelize.STRING,
+        departement_id: {
+          type: Sequelize.UUID,
+          references: {
+            model: "departemen",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         email: {
           type: Sequelize.STRING,
@@ -86,7 +92,6 @@ module.exports = {
           "NIP",
           "nickname",
           "nama_karyawan",
-          "departement",
           "email",
           "phone",
           "tmptlahir",

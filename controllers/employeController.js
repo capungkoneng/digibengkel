@@ -84,7 +84,7 @@ const createNewEmployee = async (req, res) => {
         NIP: req.body.NIP,
         nickname: req.body.nickname,
         nama_karyawan: req.body.nama_karyawan,
-        departement: req.body.departement,
+        departement_id: req.body.departement_id,
         email: req.body.email,
         alamat: req.body.alamat,
         phone: req.body.phone,

@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       user_id: {
         type: DataTypes.UUID,
-        allowNull: false,
-        primaryKey: true,
-        allowNull: false,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: true,
       },
       ip_address: {
         type: DataTypes.TEXT,

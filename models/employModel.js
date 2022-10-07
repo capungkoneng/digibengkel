@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       nama_karyawan: {
         type: DataTypes.STRING,
       },
-      departement: {
-        type: DataTypes.STRING,
+      departement_id: {
+        type: DataTypes.UUID,
       },
       email: {
         type: DataTypes.STRING,
@@ -93,6 +93,10 @@ module.exports = (sequelize, DataTypes) => {
     employe.hasMany(models.emp_pelatihan, {
       foreignKey: "emp_id_pel",
       as: "emppel",
+    });
+    employe.hasOne(models.departemen, {
+      foreignKey: "id",
+      sourceKey: "departement_id",
     });
   };
   return employe;

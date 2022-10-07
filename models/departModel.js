@@ -28,5 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "departemen",
     }
   );
+  departemen.associate = (models) => {
+    departemen.belongsTo(models.employe, {
+      foreignKey: "id",
+    });
+  };
   return departemen;
 };
