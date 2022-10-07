@@ -2,14 +2,10 @@ module.exports = (sequelize, DataTypes) => {
   const session = sequelize.define(
     "session",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-        allowNull: false,
-      },
       user_id: {
         type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
         allowNull: false,
       },
       ip_address: {

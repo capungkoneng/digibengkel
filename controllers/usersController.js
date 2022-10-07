@@ -7,11 +7,12 @@ const { v4: uuidv4 } = require("uuid");
 const getAllUsers = async (req, res) => {
   try {
     const result = await model.session.findAll({
+      attributes: ["user_id", "is_bloked"],
       include: [
         {
           model: model.user,
+          attributes: ["id", "username", "role_name"],
           required: true,
-          right: true, // has no effect, will create an inner join
         },
       ],
     });
@@ -59,8 +60,10 @@ const registerNewUsers = async (req, res) => {
 const loginUsers = async (req, res) => {
   try {
     const user = await model.user.findOne({
+      attributes: ["id", "password", "username"],
       where: { username: req.body.username },
     });
+
     if (!user) {
       return res.status(403).json("username tidak ada / belum daftar");
     }
@@ -71,10 +74,8 @@ const loginUsers = async (req, res) => {
     if (!passwordIsValid) {
       return res.status(403).json("salah password");
     }
-
     const token = auth.generateToken(user.id);
     const userSession = await model.session.create({
-      id: uuidv4(),
       user_id: user.id,
       ip_address: ip.address(),
       acces_token: token,
@@ -94,6 +95,7 @@ const loginUsers = async (req, res) => {
 };
 
 const logoutUsers = async (req, res) => {
+  const id = req.session.userId;
   try {
     const sessionDel = await model.session.destroy({
       where: {
@@ -101,8 +103,11 @@ const logoutUsers = async (req, res) => {
       },
     });
     if (sessionDel) {
-      req.session.token = "";
-      return res.status(200).json({ success: true, msg: "berhasil logout " });
+      req.session.destroy();
+      return res.status(200).json({
+        success: true,
+        msg: "berhasil logout ",
+      });
     } else {
       return res.status(200).json({ success: false, msg: "gagal logout" });
     }

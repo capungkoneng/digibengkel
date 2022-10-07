@@ -11,7 +11,7 @@ const qutationController = require("../controllers/quotationController");
 const equipController = require("../controllers/equipController");
 const worController = require("../controllers/worController");
 
-/***************************USER********************************* */
+/***************************AUTH********************************* */
 router.post("/signup", usersController.registerNewUsers);
 router.post("/signin", usersController.loginUsers);
 router.delete(
@@ -19,6 +19,9 @@ router.delete(
   auth.authToken({ admin: "admin", hrd: "hrd" }),
   usersController.logoutUsers
 );
+/***************************AUTH********************************* */
+
+/***************************USER********************************* */
 
 router.get(
   "/users",

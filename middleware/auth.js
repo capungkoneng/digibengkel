@@ -9,10 +9,11 @@ function authToken(roles) {
     const authHeader = req.headers.authorization;
     if (authHeader || req.session.token) {
       const token = authHeader ? authHeader.split(" ")[1] : req.session.token;
-      jwt.verify(token, TOKEN_KEY, (err, userToken) => {
+      jwt.verify(token, TOKEN_KEY, async (err, userToken) => {
         if (err) return res.sendStatus(403);
-        model.user
+        await model.user
           .findOne({
+            attributes: ["id", "username", "role_name"],
             where: {
               id: userToken.data,
             },
@@ -37,9 +38,9 @@ function authToken(roles) {
   };
 }
 
-function generateToken(username) {
-  return jwt.sign({ data: username }, TOKEN_KEY, {
-    expiresIn: "1h",
+function generateToken(user_id) {
+  return jwt.sign({ data: user_id }, TOKEN_KEY, {
+    expiresIn: "1d",
   });
 }
 
