@@ -4,6 +4,7 @@ const auth = require("../middleware/auth");
 const upload = require("../config/cloudinary");
 
 const usersController = require("../controllers/usersController");
+const departController = require("../controllers/departController");
 const custommerController = require("../controllers/custommerController");
 const employeController = require("../controllers/employeController");
 const supplierController = require("../controllers/supplierController");
@@ -30,6 +31,14 @@ router.get(
 );
 router.get("/users/:id", usersController.getUsers);
 /***************************USER********************************* */
+
+/***************************DEPARTEMENT********************************* */
+router.get("/depart", departController.getDepart);
+router.post("/depart", departController.createDepart);
+router.put("/depart/:id", departController.updateDepart);
+router.delete("/depart/:id", departController.delDepart);
+router.get("/depart/:id", departController.delDepart);
+/***************************DEPARTEMENT********************************* */
 
 /***************************CUSTOMER********************************* */
 router.get("/customer", custommerController.getAllCustommer);

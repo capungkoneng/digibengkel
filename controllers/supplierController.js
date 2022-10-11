@@ -96,18 +96,13 @@ const updateSupplier = async (req, res) => {
       where: {
         id: id,
       },
-    });
-    const resUpdate = await model.supplier.findOne({
-      where: {
-        id: id,
-      },
+      returning: true,
     });
     if (result) {
       res.status(201).json({
         success: true,
         massage: "Berhasil update data",
         result: result,
-        respon: resUpdate,
       });
     } else {
       res.status(404).json({
