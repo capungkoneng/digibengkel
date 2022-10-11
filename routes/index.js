@@ -83,6 +83,7 @@ router.post(
   qutationController.createNewQuo
 );
 router.put("/quotation/:id", qutationController.updateQuo);
+router.put("/quotation/quodesk/:id", qutationController.updateQuoDesk);
 router.delete("/quotation/:id", qutationController.deleteQuo);
 router.get("/quotation/:id", qutationController.getQuo);
 /***************************QUOTATION********************************* */

@@ -126,7 +126,40 @@ const updateQuo = async (req, res) => {
         where: {
           id: id,
         },
-        force: true,
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const updateQuoDesk = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.quodesk.update(
+      {
+        item: req.body.item,
+        vol: req.body.vol,
+        unit: req.body.unit,
+      },
+      {
+        where: {
+          id: id,
+        },
         returning: true,
       }
     );
@@ -191,6 +224,7 @@ module.exports = {
   getAllQuo,
   createNewQuo,
   updateQuo,
+  updateQuoDesk,
   deleteQuo,
   getQuo,
 };
