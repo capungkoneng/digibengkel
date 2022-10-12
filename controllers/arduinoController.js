@@ -21,7 +21,7 @@ const createNewArduino = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ masagge: error.message });
+    // res.status(500).json({ masagge: error.message });
   }
 };
 
