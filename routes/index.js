@@ -108,7 +108,7 @@ router.get("/wor/:id", worController.getWor);
 
 /***************************ARDUINO********************************* */
 router.post("/arduino", arduino.createNewArduino);
-
+router.get("/arduino/", arduino.getAllArduino);
 /***************************ARDUION********************************* */
 
 module.exports = router;
