@@ -11,6 +11,7 @@ const supplierController = require("../controllers/supplierController");
 const qutationController = require("../controllers/quotationController");
 const equipController = require("../controllers/equipController");
 const worController = require("../controllers/worController");
+const arduino = require("../controllers/arduinoController");
 
 /***************************AUTH********************************* */
 router.post("/signup", usersController.registerNewUsers);
@@ -104,5 +105,10 @@ router.put("/wor/:id", worController.updateWor);
 router.delete("/wor/:id", worController.deleteWor);
 router.get("/wor/:id", worController.getWor);
 /***************************WOR********************************* */
+
+/***************************ARDUINO********************************* */
+router.post("/arduino", arduino.createNewArduino);
+
+/***************************ARDUION********************************* */
 
 module.exports = router;
