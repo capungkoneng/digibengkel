@@ -2,28 +2,35 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("material_size", {
+    await queryInterface.createTable("employchild", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false,
       },
-      kode_mr_size: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      nama_mr_size: {
-        type: Sequelize.STRING,
-      },
-      mr_name_head: {
+      emp_id_child: {
         type: Sequelize.UUID,
         references: {
-          model: "material_name",
+          model: "employfam",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
+      },
+      name_child: {
+        type: Sequelize.STRING,
+      },
+      jenis_kelamin: {
+        type: Sequelize.ENUM({
+          values: ["Laki-Laki", "Perempuan"],
+        }),
+      },
+      tmpt_lahir: {
+        type: Sequelize.STRING,
+      },
+      tgllahir: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +44,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("material_size");
+    await queryInterface.dropTable("employchild");
   },
 };

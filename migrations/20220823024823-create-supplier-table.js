@@ -43,16 +43,16 @@ module.exports = {
         type: Sequelize.STRING,
       },
       akun_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       contact_person_sup: {
         type: Sequelize.STRING,
       },
       ppn: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       pph: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,

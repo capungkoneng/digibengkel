@@ -106,9 +106,4 @@ router.delete("/wor/:id", worController.deleteWor);
 router.get("/wor/:id", worController.getWor);
 /***************************WOR********************************* */
 
-/***************************ARDUINO********************************* */
-router.post("/arduino", arduino.createNewArduino);
-router.get("/arduino/", arduino.getAllArduino);
-/***************************ARDUION********************************* */
-
 module.exports = router;
