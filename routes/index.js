@@ -11,7 +11,6 @@ const supplierController = require("../controllers/supplierController");
 const qutationController = require("../controllers/quotationController");
 const equipController = require("../controllers/equipController");
 const worController = require("../controllers/worController");
-const arduino = require("../controllers/arduinoController");
 
 /***************************AUTH********************************* */
 router.post("/signup", usersController.registerNewUsers);

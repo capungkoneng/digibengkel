@@ -35,6 +35,10 @@ const getAllEmployees = async (req, res) => {
           model: model.emp_pelatihan,
           as: "emppel",
         },
+        {
+          model: model.employchild,
+          as: "empchild",
+        },
       ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
@@ -64,6 +68,7 @@ const getAllEmployees = async (req, res) => {
 };
 
 const createNewEmployee = async (req, res) => {
+  console.log(req.body.empchild);
   const newArrEmppel = [];
 
   if (req.body.emppel.length !== 0) {
@@ -81,7 +86,7 @@ const createNewEmployee = async (req, res) => {
     const result = await model.employe.create(
       {
         id: uuidv4(),
-        NIP: req.body.NIP,
+        nik: req.body.nik,
         nickname: req.body.nickname,
         nama_karyawan: req.body.nama_karyawan,
         departement_id: req.body.departement_id,
@@ -99,9 +104,14 @@ const createNewEmployee = async (req, res) => {
         sisa_cuti: req.body.sisa_cuti,
         emppen: req.body.emppen,
         emppel: newArrEmppel,
+        spouse_name: req.body.spouse_name,
+        jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
+        tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
+        tgllahir_spouse: req.body.tgllahir_spouse,
+        empchild: req.body.empchild,
       },
       {
-        include: ["emppen", "emppel"],
+        include: ["emppen", "emppel", "empchild"],
       }
     );
     if (result) {

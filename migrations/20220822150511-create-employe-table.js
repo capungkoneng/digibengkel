@@ -10,8 +10,8 @@ module.exports = {
           primaryKey: true,
           allowNull: false,
         },
-        NIP: {
-          type: Sequelize.BIGINT,
+        nik: {
+          type: Sequelize.STRING,
           unique: true,
           allowNull: false,
         },
@@ -78,6 +78,18 @@ module.exports = {
           type: Sequelize.FLOAT,
           defaultValue: 0,
         },
+        spouse_name: {
+          type: Sequelize.STRING,
+        },
+        jenis_kelamin_spouse: {
+          type: Sequelize.STRING,
+        },
+        tmpt_lahir_spouse: {
+          type: Sequelize.STRING,
+        },
+        tgllahir_spouse: {
+          type: Sequelize.DATE,
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -89,7 +101,7 @@ module.exports = {
       })
       .then(() =>
         queryInterface.addIndex("employe", [
-          "NIP",
+          "nik",
           "nickname",
           "nama_karyawan",
           "email",

@@ -12,7 +12,7 @@ module.exports = {
       emp_id_child: {
         type: Sequelize.UUID,
         references: {
-          model: "employfam",
+          model: "employe",
           key: "id",
         },
         onUpdate: "CASCADE",

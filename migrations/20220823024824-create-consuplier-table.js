@@ -20,7 +20,7 @@ module.exports = {
         contact_person_telp: {
           type: Sequelize.STRING,
         },
-        customer_id: {
+        sup_id: {
           type: Sequelize.UUID,
           references: {
             model: "supplier",

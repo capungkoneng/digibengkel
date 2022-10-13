@@ -48,10 +48,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       ppn: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
       },
       pph: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
       },
       createdAt: {
         allowNull: false,
@@ -66,5 +66,11 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "supplier",
     }
   );
+  supplier.associate = (models) => {
+    supplier.hasMany(models.consuplier, {
+      foreignKey: "sup_id",
+      as: "cosup",
+    });
+  };
   return supplier;
 };

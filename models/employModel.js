@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      NIP: {
-        type: DataTypes.BIGINT,
+      nik: {
+        type: DataTypes.STRING,
         unique: true,
         allowNull: false,
       },
@@ -69,6 +69,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         defaultValue: 0,
       },
+      spouse_name: {
+        type: DataTypes.STRING,
+      },
+      jenis_kelamin_spouse: {
+        type: DataTypes.STRING,
+      },
+      tmpt_lahir_spouse: {
+        type: DataTypes.STRING,
+      },
+      tgllahir_spouse: {
+        type: DataTypes.DATE,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -93,6 +105,10 @@ module.exports = (sequelize, DataTypes) => {
     employe.hasMany(models.emp_pelatihan, {
       foreignKey: "emp_id_pel",
       as: "emppel",
+    });
+    employe.hasMany(models.employchild, {
+      foreignKey: "emp_id_child",
+      as: "empchild",
     });
     employe.hasOne(models.departemen, {
       foreignKey: "id",
