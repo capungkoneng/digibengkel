@@ -179,6 +179,12 @@ const getSupplier = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: model.consuplier,
+          as: "cosup",
+        },
+      ],
     });
     if (result) {
       return res.status(200).json({ success: true, msg: result });
