@@ -26,6 +26,12 @@ const getAllSupplier = async (req, res) => {
           },
         ],
       },
+      include: [
+        {
+          model: model.consuplier,
+          as: "cosup",
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
@@ -55,22 +61,28 @@ const getAllSupplier = async (req, res) => {
 
 const createNewSupplier = async (req, res) => {
   try {
-    const result = await model.supplier.create({
-      id: uuidv4(),
-      suplier_type: req.body.suplier_type,
-      id_suplier: req.body.id_suplier,
-      sup_name: req.body.sup_name,
-      alamat: req.body.alamat,
-      kota: req.body.kota,
-      phone: req.body.phone,
-      email: req.body.email,
-      bank_akun: req.body.bank_akun,
-      akun_name: req.body.akun_name,
-      akun_number: req.body.akun_number,
-      contact_person_sup: req.body.contact_person_sup,
-      ppn: req.body.ppn,
-      pph: req.body.pph,
-    });
+    const result = await model.supplier.create(
+      {
+        id: uuidv4(),
+        suplier_type: req.body.suplier_type,
+        id_suplier: req.body.id_suplier,
+        sup_name: req.body.sup_name,
+        alamat: req.body.alamat,
+        kota: req.body.kota,
+        phone: req.body.phone,
+        email: req.body.email,
+        bank_akun: req.body.bank_akun,
+        akun_name: req.body.akun_name,
+        akun_number: req.body.akun_number,
+        contact_person_sup: req.body.contact_person_sup,
+        ppn: req.body.ppn,
+        pph: req.body.pph,
+        cosup: req.body.cosup,
+      },
+      {
+        include: ["cosup"],
+      }
+    );
     if (result) {
       res.status(201).json({
         success: true,
@@ -103,6 +115,33 @@ const updateSupplier = async (req, res) => {
         success: true,
         massage: "Berhasil update data",
         result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const updatecuSup = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.consuplier.update(req.body, {
+      where: {
+        id: id,
+      },
+      returning: true,
+    });
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
       });
     } else {
       res.status(404).json({
@@ -155,6 +194,7 @@ module.exports = {
   getAllSupplier,
   createNewSupplier,
   updateSupplier,
+  updatecuSup,
   deleteSupplier,
   getSupplier,
 };

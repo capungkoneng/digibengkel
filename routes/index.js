@@ -65,12 +65,14 @@ router.put(
   upload.single("upload"),
   employeController.updateEmppel
 );
+router.put("/employe/empchild/:id", employeController.updateChild);
 /***************************EMPLOYE********************************* */
 
 /***************************SUPPLIER********************************* */
 router.get("/supplier", supplierController.getAllSupplier);
 router.post("/supplier", supplierController.createNewSupplier);
 router.put("/supplier/:id", supplierController.updateSupplier);
+router.put("/supplier/cusop/:id", supplierController.updatecuSup);
 router.delete("/supplier/:id", supplierController.deleteSupplier);
 router.get("/supplier/:id", supplierController.getSupplier);
 /***************************SUPPLIER********************************* */

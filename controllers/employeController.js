@@ -223,6 +223,33 @@ const updateEmppel = async (req, res) => {
   }
 };
 
+const updateChild = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.employchild.update(req.body, {
+      where: {
+        id: id,
+      },
+      returning: true,
+    });
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const deleteEmployee = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
@@ -287,5 +314,6 @@ module.exports = {
   deleteEmployee,
   getEmployee,
   updateEmppen,
+  updateChild,
   updateEmppel,
 };
