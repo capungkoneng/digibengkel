@@ -19,6 +19,11 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      npwp: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
       sup_name: {
         type: Sequelize.STRING,
       },

@@ -66,6 +66,7 @@ const createNewSupplier = async (req, res) => {
         id: uuidv4(),
         suplier_type: req.body.suplier_type,
         id_suplier: req.body.id_suplier,
+        npwp: req.body.npwp,
         sup_name: req.body.sup_name,
         alamat: req.body.alamat,
         kota: req.body.kota,

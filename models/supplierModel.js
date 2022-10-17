@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
+      npwp: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
       suplier_type: {
         type: DataTypes.ENUM({
           values: ["Material Suplier", "Services Vendor"],
