@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
   supplier.associate = (models) => {
     supplier.hasMany(models.consuplier, {
       foreignKey: "sup_id",
-      as: "cosup",
+      as: "cuskontak",
     });
   };
   return supplier;

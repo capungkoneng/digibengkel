@@ -29,7 +29,7 @@ const getAllSupplier = async (req, res) => {
       include: [
         {
           model: model.consuplier,
-          as: "cosup",
+          as: "cuskontak",
         },
       ],
       offset: pagination.page * pagination.perPage,
@@ -77,10 +77,10 @@ const createNewSupplier = async (req, res) => {
         contact_person_sup: req.body.contact_person_sup,
         ppn: req.body.ppn,
         pph: req.body.pph,
-        cosup: req.body.cosup,
+        cuskontak: req.body.cuskontak,
       },
       {
-        include: ["cosup"],
+        include: ["cuskontak"],
       }
     );
     if (result) {

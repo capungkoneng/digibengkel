@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     consuplier.belongsTo(models.supplier, {
       foreignKey: "id",
       sourceKey: "sup_id",
-      as: "cosup",
+      as: "cuskontak",
     });
   };
   return consuplier;
