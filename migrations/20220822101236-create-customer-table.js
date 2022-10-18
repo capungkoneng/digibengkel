@@ -17,25 +17,12 @@ module.exports = {
         nama: {
           type: Sequelize.STRING,
         },
-        alamat: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        kota: {
-          type: Sequelize.STRING,
-        },
         email: {
           type: Sequelize.STRING,
           email: true,
           allowNull: false,
         },
         phone: {
-          type: Sequelize.STRING,
-        },
-        alamat_workshop: {
-          type: Sequelize.STRING,
-        },
-        alamat_penerima: {
           type: Sequelize.STRING,
         },
         createdAt: {
@@ -51,12 +38,8 @@ module.exports = {
         return queryInterface.addIndex("customer", [
           "id_customer",
           "nama",
-          "alamat",
-          "kota",
           "email",
           "phone",
-          "alamat_penerima",
-          "alamat_workshop",
         ]);
       });
   },

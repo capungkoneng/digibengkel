@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const customer = sequelize.define(
-    "customer",
+  const address_cus = sequelize.define(
+    "address_cus",
     {
       id: {
         type: DataTypes.UUID,
@@ -8,20 +8,32 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      id_customer: {
-        type: DataTypes.STRING,
-        unique: true,
+      alamat: {
+        type: DataTypes.TEXT,
       },
-      nama: {
+      provinsi: {
         type: DataTypes.STRING,
       },
-      email: {
+      kota: {
         type: DataTypes.STRING,
-        email: true,
-        allowNull: false,
       },
-      phone: {
+      kecamatan: {
         type: DataTypes.STRING,
+      },
+      kelurahan: {
+        type: DataTypes.STRING,
+      },
+      kodepos: {
+        type: DataTypes.FLOAT,
+      },
+      alamat_workshop: {
+        type: DataTypes.STRING,
+      },
+      alamat_penerima: {
+        type: DataTypes.STRING,
+      },
+      cus_id: {
+        type: DataTypes.UUID,
       },
       createdAt: {
         allowNull: false,
@@ -33,21 +45,15 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "customer",
+      tableName: "address_cus",
     }
   );
-  customer.associate = (models) => {
-    customer.belongsTo(models.quo, {
+  address_cus.associate = (models) => {
+    address_cus.belongsTo(models.customer, {
       foreignKey: "id",
-    });
-    customer.hasMany(models.cus_kontak, {
-      foreignKey: "customer_id",
-      as: "cuskontak",
-    });
-    customer.hasMany(models.address_cus, {
-      foreignKey: "cus_id",
+      sourceKey: "cus_id",
       as: "addrescus",
     });
   };
-  return customer;
+  return address_cus;
 };

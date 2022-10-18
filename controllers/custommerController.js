@@ -31,6 +31,10 @@ const getAllCustommer = async (req, res) => {
           model: model.cus_kontak,
           as: "cuskontak",
         },
+        {
+          model: model.address_cus,
+          as: "addrescus",
+        },
       ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
@@ -78,16 +82,13 @@ const createNewCustommer = async (req, res) => {
         id: uuidv4(),
         id_customer: req.body.id_customer,
         nama: req.body.nama,
-        alamat: req.body.alamat,
-        kota: req.body.kota,
         email: req.body.email,
         phone: req.body.phone,
-        alamat_workshop: req.body.alamat_workshop,
-        alamat_penerima: req.body.alamat_penerima,
+        addrescus: req.body.addrescus,
         cuskontak: newArrEmppel,
       },
       {
-        include: ["cuskontak"],
+        include: ["cuskontak", "addrescus"],
       }
     );
     if (result) {
@@ -179,6 +180,33 @@ const updateCusKontak = async (req, res) => {
   }
 };
 
+const updateCusAdrees = async (req, res) => {
+  let id = req.params.id;
+
+  try {
+    const result = await model.address_cus.update(req.body, {
+      where: {
+        id: id,
+      },
+      returning: true,
+    });
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil update data",
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const deleteCustommer = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
@@ -228,4 +256,5 @@ module.exports = {
   updateCusKontak,
   deleteCustommer,
   getOneCustommer,
+  updateCusAdrees,
 };

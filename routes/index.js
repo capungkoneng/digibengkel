@@ -11,6 +11,7 @@ const supplierController = require("../controllers/supplierController");
 const qutationController = require("../controllers/quotationController");
 const equipController = require("../controllers/equipController");
 const worController = require("../controllers/worController");
+const addressController = require("../controllers/addressController");
 
 /***************************AUTH********************************* */
 router.post("/signup", usersController.registerNewUsers);
@@ -47,6 +48,7 @@ router.put("/customer/:id", custommerController.updateCustommer);
 router.put("/customer/cuskontak/:id", custommerController.updateCusKontak);
 router.delete("/customer/:id", custommerController.deleteCustommer);
 router.get("/customer/:id", custommerController.getOneCustommer);
+router.put("/customer/address/:id", custommerController.updateCusAdrees);
 /***************************CUSTOMER********************************* */
 
 /***************************EMPLOYE********************************* */
@@ -107,4 +109,6 @@ router.delete("/wor/:id", worController.deleteWor);
 router.get("/wor/:id", worController.getWor);
 /***************************WOR********************************* */
 
+router.get("/address/prov", addressController.getAllProv);
+router.get("/address/city/:id", addressController.getAllCity);
 module.exports = router;
