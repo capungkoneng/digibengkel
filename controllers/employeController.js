@@ -68,7 +68,6 @@ const getAllEmployees = async (req, res) => {
 };
 
 const createNewEmployee = async (req, res) => {
-  console.log(req.body.empchild);
   const newArrEmppel = [];
 
   if (req.body.emppel.length !== 0) {
