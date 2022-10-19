@@ -60,7 +60,11 @@ const getAllCity = async (req, res) => {
   }
 };
 
+const getAllKec = async (req, res) => {
+};
+
 module.exports = {
   getAllProv,
   getAllCity,
+  getAllKec
 };

@@ -75,6 +75,7 @@ router.get("/supplier", supplierController.getAllSupplier);
 router.post("/supplier", supplierController.createNewSupplier);
 router.put("/supplier/:id", supplierController.updateSupplier);
 router.put("/supplier/cusop/:id", supplierController.updatecuSup);
+router.put("/supplier/suprek/:id", supplierController.updaterekSup);
 router.delete("/supplier/:id", supplierController.deleteSupplier);
 router.get("/supplier/:id", supplierController.getSupplier);
 /***************************SUPPLIER********************************* */

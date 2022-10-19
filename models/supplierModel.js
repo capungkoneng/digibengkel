@@ -40,15 +40,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
-      bank_akun: {
-        type: DataTypes.STRING,
-      },
-      akun_name: {
-        type: DataTypes.STRING,
-      },
-      akun_number: {
-        type: DataTypes.INTEGER,
-      },
       contact_person_sup: {
         type: DataTypes.STRING,
       },
@@ -75,6 +66,10 @@ module.exports = (sequelize, DataTypes) => {
     supplier.hasMany(models.consuplier, {
       foreignKey: "sup_id",
       as: "cuskontak",
+    });
+    supplier.hasMany(models.suplier_rek, {
+      foreignKey: "sup_id",
+      as: "suprek",
     });
   };
   return supplier;

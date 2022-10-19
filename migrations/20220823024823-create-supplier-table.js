@@ -41,15 +41,6 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      bank_akun: {
-        type: Sequelize.STRING,
-      },
-      akun_name: {
-        type: Sequelize.STRING,
-      },
-      akun_number: {
-        type: Sequelize.FLOAT,
-      },
       contact_person_sup: {
         type: Sequelize.STRING,
       },

@@ -72,16 +72,14 @@ const createNewSupplier = async (req, res) => {
         kota: req.body.kota,
         phone: req.body.phone,
         email: req.body.email,
-        bank_akun: req.body.bank_akun,
-        akun_name: req.body.akun_name,
-        akun_number: req.body.akun_number,
         contact_person_sup: req.body.contact_person_sup,
         ppn: req.body.ppn,
         pph: req.body.pph,
         cuskontak: req.body.cuskontak,
+        suprek: req.body.suprek,
       },
       {
-        include: ["cuskontak"],
+        include: ["cuskontak", "suprek"],
       }
     );
     if (result) {
@@ -155,6 +153,33 @@ const updatecuSup = async (req, res) => {
   }
 };
 
+const updaterekSup = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.suplier_rek.update(req.body, {
+      where: {
+        id: id,
+      },
+      returning: true,
+    });
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const deleteSupplier = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
@@ -202,6 +227,7 @@ module.exports = {
   createNewSupplier,
   updateSupplier,
   updatecuSup,
+  updaterekSup,
   deleteSupplier,
   getSupplier,
 };
