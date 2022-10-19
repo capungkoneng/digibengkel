@@ -31,6 +31,10 @@ const getAllSupplier = async (req, res) => {
           model: model.consuplier,
           as: "cuskontak",
         },
+        {
+          model: model.suplier_rek,
+          as: "suprek",
+        },
       ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
@@ -209,6 +213,10 @@ const getSupplier = async (req, res) => {
         {
           model: model.consuplier,
           as: "cosup",
+        },
+        {
+          model: model.suplier_rek,
+          as: "suprek",
         },
       ],
     });
