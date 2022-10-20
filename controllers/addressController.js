@@ -38,7 +38,7 @@ const getAllKec = async (req, res) => {
     const result = await model.ec_districts.findAll({
       attributes: ["dis_name"],
       where: {
-        dis_id: req.params.id,
+        city_id: req.params.id,
       },
     });
     if (result) {
@@ -56,7 +56,7 @@ const getAllKel = async (req, res) => {
     const result = await model.ec_subdistricts.findAll({
       attributes: ["subdis_name"],
       where: {
-        subdis_id: req.params.id,
+        dis_id: req.params.id,
       },
     });
     if (result) {
