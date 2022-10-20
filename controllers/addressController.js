@@ -23,7 +23,7 @@ const getAllCity = async (req, res) => {
         prov_id: req.params.id,
       },
     });
-    if (result) {
+    if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });
@@ -41,7 +41,7 @@ const getAllKec = async (req, res) => {
         city_id: req.params.id,
       },
     });
-    if (result) {
+    if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });
@@ -59,7 +59,7 @@ const getAllKel = async (req, res) => {
         dis_id: req.params.id,
       },
     });
-    if (result) {
+    if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });
