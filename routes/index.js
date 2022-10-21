@@ -62,7 +62,7 @@ router.put("/customer/address/:id", custommerController.updateCusAdrees);
 router.get("/employe", employeController.getAllEmployees);
 router.post(
   "/employe",
-  upload.array("upload"),
+  upload.single("upload"),
   employeController.createNewEmployee
 );
 router.put("/employe/:id", employeController.updateEmployee);
