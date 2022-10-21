@@ -71,7 +71,7 @@ const createNewEmployee = async (req, res) => {
   const newArrEmppel = [];
 
   if (req.body.emppel.length !== 0) {
-    const arrEmppel = req.body.emppel;
+    const arrEmppel = JSON.stringify(req.body.emppel);
     for (let index = 0; index < arrEmppel.length; index++) {
       newArrEmppel.push({
         jns_pelatihan: arrEmppel[index].jns_pelatihan,
