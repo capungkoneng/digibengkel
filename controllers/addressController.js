@@ -54,7 +54,7 @@ const getAllKec = async (req, res) => {
 const getAllKel = async (req, res) => {
   try {
     const result = await model.ec_subdistricts.findAll({
-      attributes: ["sibdis_id", "subdis_name"],
+      attributes: ["subdis_id", "subdis_name"],
       where: {
         dis_id: req.params.id,
       },
