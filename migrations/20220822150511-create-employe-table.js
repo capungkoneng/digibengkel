@@ -40,6 +40,21 @@ module.exports = {
         alamat: {
           type: Sequelize.STRING,
         },
+        kota: {
+          type: Sequelize.STRING,
+        },
+        provinsi: {
+          type: Sequelize.STRING,
+        },
+        kecamatan: {
+          type: Sequelize.STRING,
+        },
+        kelurahan: {
+          type: Sequelize.STRING,
+        },
+        kodepos: {
+          type: Sequelize.FLOAT,
+        },
         phone: {
           type: Sequelize.STRING,
         },
@@ -67,9 +82,6 @@ module.exports = {
           type: Sequelize.ENUM({
             values: ["Single", "Married", "Divorce"],
           }),
-        },
-        kota: {
-          type: Sequelize.STRING,
         },
         starjoin: {
           type: Sequelize.DATE,

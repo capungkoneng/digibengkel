@@ -32,6 +32,18 @@ module.exports = (sequelize, DataTypes) => {
       kota: {
         type: DataTypes.STRING,
       },
+      provinsi: {
+        type: DataTypes.STRING,
+      },
+      kecamatan: {
+        type: DataTypes.STRING,
+      },
+      kelurahan: {
+        type: DataTypes.STRING,
+      },
+      kodepos: {
+        type: DataTypes.FLOAT,
+      },
       phone: {
         type: DataTypes.STRING,
       },

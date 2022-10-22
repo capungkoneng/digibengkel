@@ -32,6 +32,21 @@ module.exports = (sequelize, DataTypes) => {
       alamat: {
         type: DataTypes.STRING,
       },
+      kota: {
+        type: DataTypes.STRING,
+      },
+      provinsi: {
+        type: DataTypes.STRING,
+      },
+      kecamatan: {
+        type: DataTypes.STRING,
+      },
+      kelurahan: {
+        type: DataTypes.STRING,
+      },
+      kodepos: {
+        type: DataTypes.FLOAT,
+      },
       phone: {
         type: DataTypes.STRING,
       },
@@ -58,9 +73,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM({
           values: ["Single", "Married", "Divorce"],
         }),
-      },
-      kota: {
-        type: DataTypes.STRING,
       },
       starjoin: {
         type: DataTypes.DATE,

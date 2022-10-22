@@ -33,6 +33,18 @@ module.exports = {
       kota: {
         type: Sequelize.STRING,
       },
+      provinsi: {
+        type: Sequelize.STRING,
+      },
+      kecamatan: {
+        type: Sequelize.STRING,
+      },
+      kelurahan: {
+        type: Sequelize.STRING,
+      },
+      kodepos: {
+        type: Sequelize.FLOAT,
+      },
       phone: {
         type: Sequelize.STRING,
       },
