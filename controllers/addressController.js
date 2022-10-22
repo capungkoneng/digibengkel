@@ -36,7 +36,7 @@ const getAllCity = async (req, res) => {
 const getAllKec = async (req, res) => {
   try {
     const result = await model.ec_districts.findAll({
-      attributes: ["dis_name"],
+      attributes: ["dis_id", "dis_name"],
       where: {
         city_id: req.params.id,
       },
