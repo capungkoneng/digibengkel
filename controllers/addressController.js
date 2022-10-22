@@ -3,7 +3,7 @@ const model = require("../models");
 const getAllProv = async (req, res) => {
   try {
     const result = await model.ec_provinces.findAll({
-      attributes: ["prov_name"],
+      attributes: ["prov_id", "prov_name"],
     });
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
@@ -18,7 +18,7 @@ const getAllProv = async (req, res) => {
 const getAllCity = async (req, res) => {
   try {
     const result = await model.ec_cities.findAll({
-      attributes: ["city_name"],
+      attributes: ["city_id", "city_name"],
       where: {
         prov_id: req.params.id,
       },
@@ -54,7 +54,7 @@ const getAllKec = async (req, res) => {
 const getAllKel = async (req, res) => {
   try {
     const result = await model.ec_subdistricts.findAll({
-      attributes: ["subdis_name"],
+      attributes: ["sibdis_id", "subdis_name"],
       where: {
         dis_id: req.params.id,
       },
