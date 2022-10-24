@@ -22,9 +22,6 @@ module.exports = {
           email: true,
           allowNull: false,
         },
-        phone: {
-          type: Sequelize.STRING,
-        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -39,7 +36,6 @@ module.exports = {
           "id_customer",
           "nama",
           "email",
-          "phone",
         ]);
       });
   },

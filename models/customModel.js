@@ -20,9 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         email: true,
         allowNull: false,
       },
-      phone: {
-        type: DataTypes.STRING,
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,

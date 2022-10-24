@@ -83,7 +83,6 @@ const createNewCustommer = async (req, res) => {
         id_customer: req.body.id_customer,
         nama: req.body.nama,
         email: req.body.email,
-        phone: req.body.phone,
         addrescus: req.body.addrescus,
         cuskontak: newArrEmppel,
       },
@@ -112,23 +111,12 @@ const updateCustommer = async (req, res) => {
   let id = req.params.id;
 
   try {
-    const result = await model.customer.update(
-      {
-        nama: req.body.nama,
-        alamat: req.body.alamat,
-        kota: req.body.kota,
-        email: req.body.email,
-        phone: req.body.phone,
-        alamat_workshop: req.body.alamat_workshop,
-        alamat_penerima: req.body.alamat_penerima,
+    const result = await model.customer.update(req.body, {
+      where: {
+        id: id,
       },
-      {
-        where: {
-          id: id,
-        },
-        returning: true,
-      }
-    );
+      returning: true,
+    });
     if (result) {
       res.status(201).json({
         success: true,
