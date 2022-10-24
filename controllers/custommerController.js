@@ -93,7 +93,7 @@ const createNewCustommer = async (req, res) => {
     if (result) {
       res.status(201).json({
         success: true,
-        massage: "Berhasil nambah data",
+        massage: "Berhasil Nambah Data",
         result: result,
       });
     } else {
