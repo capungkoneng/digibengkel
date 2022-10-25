@@ -115,6 +115,14 @@ const updateCustommer = async (req, res) => {
       where: {
         id: id,
       },
+      include: [
+        {
+          model: model.cus_kontak,
+        },
+        {
+          model: model.address_cus,
+        },
+      ],
       returning: true,
     });
     if (result) {
