@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       equip_id: {
         type: DataTypes.UUID,
       },
+      upload: {
+        type: DataTypes.TEXT,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,

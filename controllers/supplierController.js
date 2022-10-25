@@ -115,6 +115,14 @@ const updateSupplier = async (req, res) => {
       where: {
         id: id,
       },
+      include: [
+        {
+          model: model.consuplier,
+        },
+        {
+          model: model.suplier_rek,
+        },
+      ],
       returning: true,
     });
     if (result) {

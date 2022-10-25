@@ -27,6 +27,9 @@ module.exports = {
           onUpdate: "CASCADE",
           onDelete: "CASCADE",
         },
+        upload: {
+          type: Sequelize.TEXT,
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,

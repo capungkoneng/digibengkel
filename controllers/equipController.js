@@ -61,18 +61,39 @@ const getAllequip = async (req, res) => {
 
 const createNewEquip = async (req, res) => {
   try {
-    const result = await model.equipment.create(
-      {
-        id: uuidv4(),
-        id_equipment: req.body.id_equipment,
-        equip_nama: req.body.equip_nama,
-        description: req.body.description,
-        equipmen: req.body.equipmen,
-      },
-      {
-        include: ["equipmen"],
-      }
-    );
+    const result = await model.equipment.create({
+      id: uuidv4(),
+      id_equipment: req.body.id_equipment,
+      equip_nama: req.body.equip_nama,
+      description: req.body.description,
+      upload: req.file.path,
+    });
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil nambah data",
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal nambah data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const createPart = async (req, res) => {
+  try {
+    const result = await model.part.create({
+      id: uuidv4(),
+      part_nama: req.body.part_nama,
+      description: req.body.description,
+      equip_id: req.body.equip_id,
+      upload: req.file.path,
+    });
     if (result) {
       res.status(201).json({
         success: true,
@@ -98,12 +119,12 @@ const updateEquip = async (req, res) => {
       {
         equip_nama: req.body.equip_nama,
         description: req.body.description,
+        upload: req.file.path,
       },
       {
         where: {
           id: id,
         },
-        force: true,
         returning: true,
       }
     );
@@ -132,12 +153,12 @@ const updateEquipPart = async (req, res) => {
       {
         part_nama: req.body.part_nama,
         description: req.body.description,
+        upload: req.file.path,
       },
       {
         where: {
           id: id,
         },
-        force: true,
         returning: true,
       }
     );
@@ -203,6 +224,7 @@ const getEquip = async (req, res) => {
 module.exports = {
   getAllequip,
   createNewEquip,
+  createPart,
   updateEquip,
   updateEquipPart,
   delEquip,
