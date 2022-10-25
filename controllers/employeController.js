@@ -135,16 +135,71 @@ const createNewEmployee = async (req, res) => {
 };
 
 const updateEmployee = async (req, res) => {
+  const newArrEmppel = [];
+
+  if (req.body.emppel.length !== 0) {
+    const arrEmppel = JSON.parse(req.body.emppel);
+    for (let index = 0; index < arrEmppel.length; index++) {
+      newArrEmppel.push({
+        jns_pelatihan: arrEmppel[index].jns_pelatihan,
+        ket: arrEmppel[index].ket,
+        upload: req.files[index].path,
+      });
+    }
+  }
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
   try {
-    const result = await model.employe.update(req.body, {
-      where: {
-        id: id,
+    const result = await model.employe.update(
+      {
+        id: uuidv4(),
+        nik: req.body.nik,
+        nickname: req.body.nickname,
+        nama_karyawan: req.body.nama_karyawan,
+        departement_id: req.body.departement_id,
+        email: req.body.email,
+        alamat: req.body.alamat,
+        kota: req.body.kota,
+        provinsi: req.body.provinsi,
+        kecamatan: req.body.kecamatan,
+        kelurahan: req.body.kelurahan,
+        kodepos: req.body.kodepos,
+        phone: req.body.phone,
+        tmptlahir: req.body.tmptlahir,
+        tgllahir: new Date(req.body.tgllahir),
+        id_card: req.body.id_card,
+        karyawan_status: req.body.karyawan_status,
+        jenis_kelamin: req.body.jenis_kelamin,
+        status: req.body.status,
+        starjoin: new Date(req.body.starjoin),
+        sisa_cuti: req.body.sisa_cuti,
+        emppen: req.body.emppen,
+        emppel: newArrEmppel,
+        spouse_name: req.body.spouse_name,
+        jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
+        tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
+        tgllahir_spouse: req.body.tgllahir_spouse,
+        empchild: req.body.empchild,
       },
-      force: true,
-      returning: true,
-    });
+      {
+        where: {
+          id: id,
+        },
+        include: [
+          {
+            model: model.emp_pendidikan,
+          },
+          {
+            model: model.emp_pelatihan,
+          },
+          {
+            model: model.employchild,
+          },
+        ],
+        force: true,
+        returning: true,
+      }
+    );
     if (result) {
       res.status(201).json({
         success: true,
