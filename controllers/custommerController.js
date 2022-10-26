@@ -109,20 +109,11 @@ const createNewCustommer = async (req, res) => {
 
 const updateCustommer = async (req, res) => {
   let id = req.params.id;
-
   try {
     const result = await model.customer.update(req.body, {
       where: {
         id: id,
       },
-      include: [
-        {
-          model: model.cus_kontak,
-        },
-        {
-          model: model.address_cus,
-        },
-      ],
       returning: true,
     });
     if (result) {
@@ -144,7 +135,6 @@ const updateCustommer = async (req, res) => {
 
 const updateCusKontak = async (req, res) => {
   let id = req.params.id;
-
   try {
     const result = await model.cus_kontak.update(
       {

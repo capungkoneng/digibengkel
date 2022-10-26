@@ -135,18 +135,6 @@ const createNewEmployee = async (req, res) => {
 };
 
 const updateEmployee = async (req, res) => {
-  const newArrEmppel = [];
-
-  if (req.body.emppel.length !== 0) {
-    const arrEmppel = JSON.parse(req.body.emppel);
-    for (let index = 0; index < arrEmppel.length; index++) {
-      newArrEmppel.push({
-        jns_pelatihan: arrEmppel[index].jns_pelatihan,
-        ket: arrEmppel[index].ket,
-        upload: req.files[index].path,
-      });
-    }
-  }
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
   try {
@@ -173,30 +161,15 @@ const updateEmployee = async (req, res) => {
         status: req.body.status,
         starjoin: new Date(req.body.starjoin),
         sisa_cuti: req.body.sisa_cuti,
-        emppen: req.body.emppen,
-        emppel: newArrEmppel,
         spouse_name: req.body.spouse_name,
         jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
         tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
         tgllahir_spouse: req.body.tgllahir_spouse,
-        empchild: req.body.empchild,
       },
       {
         where: {
           id: id,
         },
-        include: [
-          {
-            model: model.emp_pendidikan,
-          },
-          {
-            model: model.emp_pelatihan,
-          },
-          {
-            model: model.employchild,
-          },
-        ],
-        force: true,
         returning: true,
       }
     );
@@ -225,7 +198,6 @@ const updateEmppen = async (req, res) => {
       where: {
         id: id,
       },
-      force: true,
       returning: true,
     });
     if (result) {
@@ -260,7 +232,6 @@ const updateEmppel = async (req, res) => {
         where: {
           id: id,
         },
-        force: true,
         returning: true,
       }
     );
