@@ -12,12 +12,15 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.ENUM({
             values: ["SD", "SMP", "SMA", "D3", "S1"],
           }),
+          allowNull: false,
         },
         nama_sekolah: {
           type: DataTypes.STRING,
+          allowNull: false,
         },
         thun_lulus: {
           type: DataTypes.DATE,
+          allowNull: false,
         },
         emp_id: {
           type: DataTypes.UUID,

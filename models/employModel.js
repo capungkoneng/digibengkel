@@ -20,44 +20,58 @@ module.exports = (sequelize, DataTypes) => {
       },
       nama_karyawan: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       departement_id: {
         type: DataTypes.UUID,
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
         unique: true,
         isEmail: true,
+        allowNull: false,
       },
       alamat: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       kota: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       provinsi: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       kecamatan: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       kelurahan: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       kodepos: {
         type: DataTypes.FLOAT,
+        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       tmptlahir: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       tgllahir: {
         type: DataTypes.DATE,
+        allowNull: false,
       },
       id_card: {
         type: DataTypes.BIGINT,
+        unique: true,
+        allowNull: false,
       },
       karyawan_status: {
         type: DataTypes.ENUM({
@@ -76,22 +90,28 @@ module.exports = (sequelize, DataTypes) => {
       },
       starjoin: {
         type: DataTypes.DATE,
+        allowNull: false,
       },
       sisa_cuti: {
         type: DataTypes.FLOAT,
         defaultValue: 0,
+        allowNull: false,
       },
       spouse_name: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       jenis_kelamin_spouse: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       tmpt_lahir_spouse: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       tgllahir_spouse: {
         type: DataTypes.DATE,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

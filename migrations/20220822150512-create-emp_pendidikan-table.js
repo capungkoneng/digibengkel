@@ -14,12 +14,15 @@ module.exports = {
           type: Sequelize.ENUM({
             values: ["SD", "SMP", "SMA", "D3", "S1"],
           }),
+          allowNull: false,
         },
         nama_sekolah: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         thun_lulus: {
           type: Sequelize.DATE,
+          allowNull: false,
         },
         emp_id: {
           type: Sequelize.UUID,

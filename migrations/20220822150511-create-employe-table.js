@@ -22,6 +22,7 @@ module.exports = {
         },
         nama_karyawan: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         departement_id: {
           type: Sequelize.UUID,
@@ -39,34 +40,44 @@ module.exports = {
         },
         alamat: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         kota: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         provinsi: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         kecamatan: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         kelurahan: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         kodepos: {
           type: Sequelize.FLOAT,
+          allowNull: false,
         },
         phone: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         tmptlahir: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         tgllahir: {
           type: Sequelize.DATE,
+          allowNull: false,
         },
         id_card: {
           type: Sequelize.BIGINT,
           unique: true,
+          allowNull: false,
         },
         karyawan_status: {
           type: Sequelize.ENUM({
@@ -92,15 +103,19 @@ module.exports = {
         },
         spouse_name: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         jenis_kelamin_spouse: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         tmpt_lahir_spouse: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         tgllahir_spouse: {
           type: Sequelize.DATE,
+          allowNull: false,
         },
         createdAt: {
           allowNull: false,
