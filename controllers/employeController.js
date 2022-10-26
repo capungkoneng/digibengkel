@@ -97,7 +97,7 @@ const createNewEmployee = async (req, res) => {
     const arrEmmpen = JSON.parse(req.body.emppen);
     for (let index = 0; index < arrEmmpen.length; index++) {
       newArrEmmpen.push({
-        jns_pndidikan: arrEmmpen[index].jns_pelatihan,
+        jns_pndidikan: arrEmmpen[index].jns_pndidikan,
         nama_sekolah: arrEmmpen[index].nama_sekolah,
         thun_lulus: arrEmmpen[index].thun_lulus,
       });
