@@ -68,6 +68,8 @@ const getAllEmployees = async (req, res) => {
 };
 
 const createNewEmployee = async (req, res) => {
+  const newArrEmmpen = [];
+  const newArrEmchild = [];
   const newArrEmppel = [];
 
   if (req.body.emppel.length !== 0) {
@@ -77,6 +79,27 @@ const createNewEmployee = async (req, res) => {
         jns_pelatihan: arrEmppel[index].jns_pelatihan,
         ket: arrEmppel[index].ket,
         upload: req.files[index].path,
+      });
+    }
+  }
+  if (req.body.empchild.length !== 0) {
+    const arrEmchild = JSON.parse(req.body.empchild);
+    for (let index = 0; index < arrEmchild.length; index++) {
+      newArrEmchild.push({
+        name_child: arrEmchild[index].name_child,
+        jenis_kelamin: arrEmchild[index].jenis_kelamin,
+        tmpt_lahir: arrEmchild[index].tmpt_lahir,
+        tgllahir: arrEmchild[index].tgllahir,
+      });
+    }
+  }
+  if (req.body.emppen.length !== 0) {
+    const arrEmmpen = JSON.parse(req.body.emppen);
+    for (let index = 0; index < arrEmmpen.length; index++) {
+      newArrEmmpen.push({
+        jns_pndidikan: arrEmmpen[index].jns_pelatihan,
+        nama_sekolah: arrEmmpen[index].nama_sekolah,
+        thun_lulus: arrEmmpen[index].thun_lulus,
       });
     }
   }
@@ -105,13 +128,13 @@ const createNewEmployee = async (req, res) => {
         status: req.body.status,
         starjoin: new Date(req.body.starjoin),
         sisa_cuti: req.body.sisa_cuti,
-        emppen: req.body.emppen,
+        emppen: newArrEmmpen,
         emppel: newArrEmppel,
         spouse_name: req.body.spouse_name,
         jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
         tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
         tgllahir_spouse: req.body.tgllahir_spouse,
-        empchild: req.body.empchild,
+        empchild: newArrEmchild,
       },
       {
         include: ["emppen", "emppel", "empchild"],
