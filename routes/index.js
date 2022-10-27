@@ -118,8 +118,16 @@ router.post(
   upload.single("upload"),
   equipController.createPart
 );
-router.put("/equipment/:id", equipController.updateEquip);
-router.put("/equipment/part/:id", equipController.updateEquipPart);
+router.put(
+  "/equipment/:id",
+  upload.single("upload"),
+  equipController.updateEquip
+);
+router.put(
+  "/equipment/part/:id",
+  upload.single("upload"),
+  equipController.updateEquipPart
+);
 router.delete("/equipment/:id", equipController.delEquip);
 router.get("/equipment/:id", equipController.getEquip);
 
