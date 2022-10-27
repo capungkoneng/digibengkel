@@ -117,6 +117,7 @@ const updateEquip = async (req, res) => {
   try {
     const result = await model.equipment.update(
       {
+        id_equipment: req.body.id_equipment,
         equip_nama: req.body.equip_nama,
         description: req.body.description,
         upload: req.file.path,
