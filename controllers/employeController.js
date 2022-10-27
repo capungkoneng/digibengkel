@@ -160,11 +160,46 @@ const createNewEmployee = async (req, res) => {
 
 const updateEmployee = async (req, res) => {
   let id = req.params.id;
+  const newArrEmmpen = [];
+  const newArrEmchild = [];
+  const newArrEmppel = [];
+
+  if (req.body.emppel.length !== 0) {
+    const arrEmppel = JSON.parse(req.body.emppel);
+    for (let index = 0; index < arrEmppel.length; index++) {
+      newArrEmppel.push({
+        jns_pelatihan: arrEmppel[index].jns_pelatihan,
+        ket: arrEmppel[index].ket,
+        wktu_selesai: arrEmppel[index].wktu_selesai,
+        upload: req.files[index].path,
+      });
+    }
+  }
+  if (req.body.empchild.length !== 0) {
+    const arrEmchild = JSON.parse(req.body.empchild);
+    for (let index = 0; index < arrEmchild.length; index++) {
+      newArrEmchild.push({
+        name_child: arrEmchild[index].name_child,
+        jenis_kelamin: arrEmchild[index].jenis_kelamin,
+        tmpt_lahir: arrEmchild[index].tmpt_lahir,
+        tgllahir: arrEmchild[index].tgllahir,
+      });
+    }
+  }
+  if (req.body.emppen.length !== 0) {
+    const arrEmmpen = JSON.parse(req.body.emppen);
+    for (let index = 0; index < arrEmmpen.length; index++) {
+      newArrEmmpen.push({
+        jns_pndidikan: arrEmmpen[index].jns_pndidikan,
+        nama_sekolah: arrEmmpen[index].nama_sekolah,
+        thun_lulus: arrEmmpen[index].thun_lulus,
+      });
+    }
+  }
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
   try {
     const result = await model.employe.update(
       {
-        id: uuidv4(),
         nik: req.body.nik,
         nickname: req.body.nickname,
         nama_karyawan: req.body.nama_karyawan,
@@ -189,6 +224,12 @@ const updateEmployee = async (req, res) => {
         jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
         tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
         tgllahir_spouse: req.body.tgllahir_spouse,
+        emppen: newArrEmmpen,
+        emppel: newArrEmppel,
+        empchild: newArrEmchild,
+      },
+      {
+        include: ["emppen", "emppel", "empchild"],
       },
       {
         where: {
