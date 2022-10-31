@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       unit: {
         type: DataTypes.STRING,
       },
+      img_url: {
+        type: DataTypes.STRING,
+      },
       quoatation_id: {
         type: DataTypes.UUID,
       },
@@ -38,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     quodesk.belongsTo(models.quo, {
       foreignKey: "id",
       sourceKey: "quoatation_id",
-      as: "quodesk"
+      as: "quodesk",
     });
   };
   return quodesk;

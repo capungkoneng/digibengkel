@@ -19,6 +19,9 @@ module.exports = {
       unit: {
         type: Sequelize.STRING,
       },
+      img_url: {
+        type: Sequelize.STRING,
+      },
       quoatation_id: {
         type: Sequelize.UUID,
         references: {

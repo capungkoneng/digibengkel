@@ -87,7 +87,7 @@ const createNewEquip = async (req, res) => {
 
 const createPart = async (req, res) => {
   try {
-    const result = await model.part.create({
+    const result = await model.part.bulkCreate({
       id: uuidv4(),
       part_nama: req.body.part_nama,
       description: req.body.description,
