@@ -218,7 +218,7 @@ const getEquip = async (req, res) => {
       include: [
         {
           model: model.part,
-          as: "equipmen",
+          as: "part",
         },
       ],
     });
