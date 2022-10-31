@@ -115,7 +115,7 @@ router.post(
 );
 router.post(
   "/equipment/part",
-  upload.single("upload"),
+  upload.array("upload"),
   equipController.createPart
 );
 router.put(
