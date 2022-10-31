@@ -12,11 +12,13 @@ module.exports = {
         },
         part_nama: {
           type: Sequelize.STRING,
+          allowNull: false,
         },
         description: {
           type: Sequelize.ENUM({
             values: ["Rotating Part", "Static Part", "Consumable Part"],
           }),
+          allowNull: false,
         },
         equip_id: {
           type: Sequelize.UUID,
@@ -29,6 +31,7 @@ module.exports = {
         },
         upload: {
           type: Sequelize.TEXT,
+          allowNull: false,
         },
         createdAt: {
           allowNull: false,

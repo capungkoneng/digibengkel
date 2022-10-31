@@ -10,17 +10,20 @@ module.exports = (sequelize, DataTypes) => {
       },
       part_nama: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       description: {
         type: DataTypes.ENUM({
           values: ["Rotating Part", "Static Part", "Consumable Part"],
         }),
+        allowNull: false,
       },
       equip_id: {
         type: DataTypes.UUID,
       },
       upload: {
         type: DataTypes.TEXT,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
