@@ -29,7 +29,7 @@ const getAllequip = async (req, res) => {
       include: [
         {
           model: model.part,
-          as: "equipmen",
+          as: "part",
         },
       ],
       offset: pagination.page * pagination.perPage,
