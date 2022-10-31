@@ -86,13 +86,23 @@ const createNewEquip = async (req, res) => {
 };
 
 const createPart = async (req, res) => {
+  const newArrPart = [];
+
+  if (req.body.part.length !== 0) {
+    const arrPart = JSON.parse(req.body.part);
+    for (let index = 0; index < arrPart.length; index++) {
+      newArrPart.push({
+        part_nama: arrPart[index].part_nama,
+        description: arrPart[index].description,
+        equip_id: arrPart[index].equip_id,
+        upload: req.file[index].path,
+      });
+    }
+  }
   try {
-    const result = await model.part.bulkCreate({
+    const result = await model.part.create({
       id: uuidv4(),
-      part_nama: req.body.part_nama,
-      description: req.body.description,
-      equip_id: req.body.equip_id,
-      upload: req.file.path,
+      part: newArrPart,
     });
     if (result) {
       res.status(201).json({

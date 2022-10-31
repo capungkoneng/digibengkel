@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   equipment.associate = (models) => {
     equipment.hasMany(models.part, {
       foreignKey: "equip_id",
-      as: "equipmen",
+      as: "part",
     });
     equipment.belongsTo(models.wor, {
       foreignKey: "id",
