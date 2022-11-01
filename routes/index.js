@@ -130,7 +130,8 @@ router.put(
 );
 router.delete("/equipment/:id", equipController.delEquip);
 router.get("/equipment/:id", equipController.getEquip);
-router.get("/equipment/eq/:id", equipController.getEqPar)
+router.get("/equipment/eq/:id", equipController.getEqPar);
+router.delete("/equipment/part/:id", equipController.delPart);
 
 /***************************EQUIPMENT********************************* */
 
