@@ -115,7 +115,64 @@ const createNewWor = async (req, res) => {
   }
 };
 
-const updateWor = async (req, res) => {};
+const updateWor = async (req, res) => {
+  let id = req.params.id;
+  if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  try {
+    const result = await model.wor.update(
+      {
+        job: req.body.job,
+        quotation_id_wor: req.body.quotation_id_wor,
+        nama_cus: req.body.nama_cus,
+        address: req.body.address,
+        tgl_wor: req.body.tgl_wor,
+        contact: req.body.contact,
+        kota: req.body.kota,
+        email: req.body.email,
+        subject: req.body.subject,
+        job_description: req.body.job_description,
+        contrak_spk: req.body.contrak_spk,
+        nilai_kontrak: req.body.nilai_kontrak,
+        sales_id_wor: req.body.sales_id_wor,
+        priority_stat: req.body.priority_stat,
+        qty: req.body.qty,
+        unit: req.body.unit,
+        tgl_order: new Date(req.body.tgl_order),
+        delivery_order: new Date(req.body.delivery_order),
+        ship_address: req.body.ship_address,
+        estimasi_hour: req.body.estimasi_hour,
+        equip_id_wor: req.body.equip_id_wor,
+        mfg: req.body.mfg,
+        Rotasi: req.body.Rotasi,
+        model: req.body.model,
+        power: req.body.power,
+        scope_of_work: req.body.scope_of_work,
+        noted: req.body.noted,
+        upload: req.file.path,
+      },
+      {
+        where: {
+          id: id,
+        },
+        returning: true,
+      }
+    );
+    if (result) {
+      res.status(201).json({
+        success: true,
+        message: "Berhasil update data",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal update data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 
 const deleteWor = async (req, res) => {
   let id = req.params.id;
