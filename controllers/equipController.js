@@ -68,7 +68,7 @@ const createNewEquip = async (req, res) => {
       newPart.push({
         part_nama: arrPart[index].part_nama,
         description: arrPart[index].description,
-        upload: req.files[index].path,
+        upload: req.file[index].path,
       });
     }
   }
