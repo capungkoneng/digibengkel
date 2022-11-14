@@ -13,10 +13,25 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "workshop",
-    format: "png",
+    allowedFormats: ["jpg", "png"],
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+  fileFilter: function (req, file, cb) {
+    if (file.mimetype === "image/png" || file.mimetype === "image/jpg") {
+      cb(null, true);
+    } else {
+      //prevent the upload
+      var newError = new Error("File type is incorrect mush png or jpg");
+      // newError.name = "MulterError";
+      cb(newError, false);
+    }
+  },
+});
 
 module.exports = upload;

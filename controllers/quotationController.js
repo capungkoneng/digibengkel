@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const Pagination = require("../config/pagging");
 const url = require("url");
+const uploadToS3 = require("../config/s3Server");
 
 const getAllQuo = async (req, res) => {
   try {
@@ -73,6 +74,24 @@ const getAllQuo = async (req, res) => {
 };
 
 const createNewQuo = async (req, res) => {
+  console.log(req.file);
+  // const newPdf = [];
+
+  const buffer = req.file.buffer;
+  const awsRes = await uploadToS3.uploadToS3(buffer);
+  if (!awsRes) {
+    return res.status(500).json({ msg: "Somthing worng" });
+  }
+  // if (req.files && req.files.length > 0) {
+  //   for (var i = 0; i < req.files.length; i++) {
+  //     // console.log(req.files[i]);
+  //     const s3 = await uploadToS3.uploadToS3(req.files[i].buffer);
+  //     newPdf.push({
+  //       buffer: s3[index].buffer,
+  //     })
+  //   }
+  // }
+  // console.log(req.files);
   try {
     const result = await model.quo.create(
       {
@@ -85,7 +104,7 @@ const createNewQuo = async (req, res) => {
         contact: req.body.contact,
         description: req.body.description,
         tanggal_quo: new Date(req.body.tanggal_quo),
-        upload: req.file.path,
+        upload: awsRes.Location,
       },
       {
         include: ["quodesk"],

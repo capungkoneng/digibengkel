@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
 const upload = require("../config/cloudinary");
+const uploadto = require("../config/s3Server");
 
 const usersController = require("../controllers/usersController");
 const departController = require("../controllers/departController");
@@ -95,7 +96,7 @@ router.get("/supplier/:id", supplierController.getSupplier);
 router.get("/quotation", qutationController.getAllQuo);
 router.post(
   "/quotation",
-  upload.single("upload"),
+  uploadto.uploadM.single("upload"),
   qutationController.createNewQuo
 );
 router.put("/quotation/:id", qutationController.updateQuo);

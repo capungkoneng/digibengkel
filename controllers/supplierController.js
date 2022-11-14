@@ -216,7 +216,7 @@ const getSupplier = async (req, res) => {
       include: [
         {
           model: model.consuplier,
-          as: "cosup",
+          as: "cuskontak",
         },
         {
           model: model.suplier_rek,
