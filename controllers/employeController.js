@@ -17,6 +17,31 @@ const getAllEmployees = async (req, res) => {
     );
     const totalRows = await model.employe.count();
     const results = await model.employe.findAll({
+      attributes: [
+        "nama_karyawan",
+        "nik",
+        "nickname",
+        "alamat",
+        "kota",
+        "provinsi",
+        "kecamatan",
+        "kelurahan",
+        "kodepos",
+        "phone",
+        "tmptlahir",
+        "tgllahir",
+        "id_card",
+        "karyawan_status",
+        "jenis_kelamin",
+        "starjoin",
+        "sisa_cuti",
+        "spouse_name",
+        "jenis_kelamin_spouse",
+        "tmpt_lahir_spouse",
+        "tgllahir_spouse",
+        "createdAt",
+        "updatedAt"
+      ],
       where: {
         [Op.or]: [
           {
@@ -38,6 +63,10 @@ const getAllEmployees = async (req, res) => {
         {
           model: model.employchild,
           as: "empchild",
+        },
+        {
+          model: model.departemen,
+          attributes: ["namadep"],
         },
       ],
       offset: pagination.page * pagination.perPage,

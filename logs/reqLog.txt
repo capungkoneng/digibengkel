@@ -1,0 +1,6 @@
+20221117	00:19:11	234a619d-8fab-4fc4-a3cd-d20cfbccd26b	GET	undefined	/api/v1/employe?page=1&limit=10
+20221117	00:19:17	7d6e39a8-4c76-431d-94eb-173601edcebc	GET	undefined	/api/v1/employe?page=1&limit=10
+20221117	00:25:29	e4c8c646-d258-4402-84c3-f92ff1e919e2	GET	undefined	/api/v1/employe?page=1&limit=10
+20221117	00:25:58	2b7a8df9-5b3c-4295-b0a0-aecd924185bd	GET	undefined	/api/v1/employe?page=1&limit=10
+20221117	00:25:59	6fd7833a-a34d-43de-9a77-26bf5bc37eb8	GET	undefined	/api/v1/employe?page=1&limit=10
+20221117	00:26:20	460f51e1-4750-47f1-856e-96ebfbc1e853	GET	undefined	/api/v1/employe?page=1&limit=10
