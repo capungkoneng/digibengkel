@@ -1,4 +1,5 @@
 const model = require("../models");
+const { Op } = require("sequelize");
 
 const getAllProv = async (req, res) => {
   try {
@@ -16,12 +17,27 @@ const getAllProv = async (req, res) => {
 };
 
 const getAllCity = async (req, res) => {
+  const search = req.query.search || "";
+
   try {
     const result = await model.ec_cities.findAll({
       attributes: ["city_id", "city_name"],
-      where: {
-        prov_id: req.params.id,
-      },
+      include: [
+        {
+          model: model.ec_provinces,
+          attributes: ["prov_id", "prov_name"],
+          as: "city",
+          where: {
+            [Op.or]: [
+              {
+                prov_name: {
+                  [Op.like]: "%" + search + "%",
+                },
+              },
+            ],
+          },
+        },
+      ],
     });
     if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
@@ -34,12 +50,27 @@ const getAllCity = async (req, res) => {
 };
 
 const getAllKec = async (req, res) => {
+  const search = req.query.search || "";
+
   try {
     const result = await model.ec_districts.findAll({
       attributes: ["dis_id", "dis_name"],
-      where: {
-        city_id: req.params.id,
-      },
+      include: [
+        {
+          model: model.ec_cities,
+          attributes: ["city_id", "city_name"],
+          as: "distric",
+          where: {
+            [Op.or]: [
+              {
+                city_name: {
+                  [Op.like]: "%" + search + "%",
+                },
+              },
+            ],
+          },
+        },
+      ],
     });
     if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
@@ -52,12 +83,27 @@ const getAllKec = async (req, res) => {
 };
 
 const getAllKel = async (req, res) => {
+  const search = req.query.search || "";
+
   try {
     const result = await model.ec_subdistricts.findAll({
       attributes: ["subdis_id", "subdis_name"],
-      where: {
-        dis_id: req.params.id,
-      },
+      include: [
+        {
+          model: model.ec_districts,
+          attributes: ["dis_id", "dis_name"],
+          as: "subdis",
+          where: {
+            [Op.or]: [
+              {
+                dis_name: {
+                  [Op.like]: "%" + search + "%",
+                },
+              },
+            ],
+          },
+        },
+      ],
     });
     if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });

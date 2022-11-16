@@ -149,9 +149,9 @@ router.get("/wor/:id", worController.getWor);
 /***************************ADRESS********************************* */
 
 router.get("/address/prov", addressController.getAllProv);
-router.get("/address/city/:id", addressController.getAllCity);
-router.get("/address/dis/:id", addressController.getAllKec);
-router.get("/address/subdis/:id", addressController.getAllKel);
+router.get("/address/city", addressController.getAllCity);
+router.get("/address/dis", addressController.getAllKec);
+router.get("/address/subdis", addressController.getAllKel);
 
 /***************************ADRESS********************************* */
 
