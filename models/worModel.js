@@ -74,8 +74,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      equip_id_wor: {
-        type: DataTypes.UUID,
+      equip_name: {
+        type: DataTypes.STRING,
       },
       mfg: {
         type: DataTypes.STRING,
@@ -99,16 +99,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      }
     },
     {
       tableName: "wor",
+      timestamp: true,
+      paranoid: true,
     }
   );
   wor.associate = (models) => {
@@ -119,10 +125,6 @@ module.exports = (sequelize, DataTypes) => {
     wor.hasOne(models.employe, {
       foreignKey: "id",
       sourceKey: "sales_id_wor",
-    });
-    wor.hasOne(models.equipment, {
-      foreignKey: "id",
-      sourceKey: "equip_id_wor",
     });
     wor.hasMany(models.part_wor, {
       foreignKey: "wor_id",

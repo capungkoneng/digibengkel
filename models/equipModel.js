@@ -40,9 +40,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "equip_id",
       as: "part",
     });
-    equipment.belongsTo(models.wor, {
-      foreignKey: "id",
-    });
   };
   return equipment;
 };

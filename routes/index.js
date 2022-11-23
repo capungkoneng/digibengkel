@@ -139,7 +139,11 @@ router.delete("/equipment/part/:id", equipController.delPart);
 /***************************WOR********************************* */
 
 router.get("/wor", worController.getAllWor);
-router.post("/wor", upload.single("upload"), worController.createNewWor);
+router.post(
+  "/wor",
+  uploadto.uploadM.single("upload"),
+  worController.createNewWor
+);
 router.put("/wor/:id", worController.updateWor);
 router.delete("/wor/:id", worController.deleteWor);
 router.get("/wor/:id", worController.getWor);

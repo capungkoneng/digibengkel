@@ -88,14 +88,8 @@ module.exports = {
           type: Sequelize.INTEGER,
           defaultValue: 0,
         },
-        equip_id_wor: {
-          type: Sequelize.UUID,
-          references: {
-            model: "equipment",
-            key: "id",
-          },
-          onUpdate: "CASCADE",
-          onDelete: "CASCADE",
+        equip_name: {
+          type: Sequelize.STRING,
         },
         mfg: {
           type: Sequelize.STRING,
@@ -119,19 +113,23 @@ module.exports = {
           type: Sequelize.TEXT,
         },
         createdAt: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.DATE,
         },
         updatedAt: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.DATE,
         },
+        deletedAt: {
+          allowNull: true,
+          type: Sequelize.DATE,
+        }
       })
       .then(() =>
         queryInterface.addIndex("wor", [
+          "job",
           "quotation_id_wor",
           "sales_id_wor",
-          "equip_id_wor",
           "upload",
         ])
       );
