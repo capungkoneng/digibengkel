@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         upload: {
           type: DataTypes.TEXT,
-          allowNull: false,
         },
         emp_id_pel: {
           type: DataTypes.UUID,

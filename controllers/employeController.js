@@ -18,6 +18,7 @@ const getAllEmployees = async (req, res) => {
     const totalRows = await model.employe.count();
     const results = await model.employe.findAll({
       attributes: [
+        "id",
         "nama_karyawan",
         "nik",
         "nickname",
