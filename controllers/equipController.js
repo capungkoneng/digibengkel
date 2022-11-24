@@ -60,32 +60,14 @@ const getAllequip = async (req, res) => {
 };
 
 const createNewEquip = async (req, res) => {
-  const newPart = [];
-
-  if (req.body.part.length !== 0) {
-    const arrPart = JSON.parse(req.body.part);
-    for (let index = 0; index < arrPart.length; index++) {
-      newPart.push({
-        part_nama: arrPart[index].part_nama,
-        description: arrPart[index].description,
-        upload: req.file[index].path,
-      });
-    }
-  }
   try {
-    const result = await model.equipment.create(
-      {
-        id: uuidv4(),
-        id_equipment: req.body.id_equipment,
-        equip_nama: req.body.equip_nama,
-        description: req.body.description,
-        upload: req.file.path,
-        part: newPart,
-      },
-      {
-        include: ["part"],
-      }
-    );
+    const result = await model.equipment.create({
+      id: uuidv4(),
+      id_equipment: req.body.id_equipment,
+      equip_nama: req.body.equip_nama,
+      description: req.body.description,
+      upload: req.file.path,
+    });
     if (result) {
       res.status(201).json({
         success: true,

@@ -74,7 +74,6 @@ const getAllQuo = async (req, res) => {
 };
 
 const createNewQuo = async (req, res) => {
-  console.log(req.file);
   // const newPdf = [];
 
   const buffer = req.file.buffer;
@@ -131,6 +130,12 @@ const createNewQuo = async (req, res) => {
 const updateQuo = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+
+  const buffer = req.file.buffer;
+  const awsRes = await uploadToS3.uploadToS3(buffer);
+  if (!awsRes) {
+    return res.status(500).json({ msg: "Somthing worng" });
+  }
   try {
     const result = await model.quo.update(
       {
@@ -139,7 +144,7 @@ const updateQuo = async (req, res) => {
         contact: req.body.contact,
         description: req.body.description,
         tanggal_quo: new Date(req.body.tanggal_quo),
-        upload: req.file.path,
+        upload: awsRes.Location,
       },
       {
         where: {
@@ -226,7 +231,7 @@ const getQuo = async (req, res) => {
       },
       include: [
         { model: model.customer, attributes: ["nama"] },
-        { model: model.quodesk },
+        { model: model.quodesk, as: "quodesk" },
       ],
     });
     if (result) {

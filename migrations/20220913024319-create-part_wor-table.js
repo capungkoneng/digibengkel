@@ -18,6 +18,20 @@ module.exports = {
             values: ["Rotating Part", "Static Part", "Consumable Part"],
           }),
         },
+        vol: {
+          type: Sequelize.FLOAT,
+          defaultValue: 0,
+        },
+        img_url: {
+          type: Sequelize.TEXT,
+        },
+        qty: {
+          type: Sequelize.INTEGER,
+          defaultValue: 0,
+        },
+        unit: {
+          type: Sequelize.STRING,
+        },
         wor_id: {
           type: Sequelize.UUID,
           references: {
@@ -37,11 +51,7 @@ module.exports = {
         },
       })
       .then(() =>
-        queryInterface.addIndex("part_wor", [
-          "nama",
-          "description",
-          "wor_id",
-        ])
+        queryInterface.addIndex("part_wor", ["nama", "description", "wor_id"])
       );
   },
 

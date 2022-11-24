@@ -122,6 +122,11 @@ const createNewWor = async (req, res) => {
 const updateWor = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
+  const buffer = req.file.buffer;
+  const awsRes = await uploadToS3.uploadToS3(buffer);
+  if (!awsRes) {
+    return res.status(500).json({ msg: "Somthing worng" });
+  }
   try {
     const result = await model.wor.update(
       {
@@ -152,7 +157,7 @@ const updateWor = async (req, res) => {
         power: req.body.power,
         scope_of_work: req.body.scope_of_work,
         noted: req.body.noted,
-        upload: req.file.path,
+        upload: awsRes.Location,
       },
       {
         where: {
@@ -206,12 +211,10 @@ const getWor = async (req, res) => {
       include: [
         {
           model: model.quo,
+          include: [{ model: model.quodesk, as: "quodesk" }],
         },
         {
           model: model.employe,
-        },
-        {
-          model: model.equipment,
         },
         {
           model: model.part_wor,

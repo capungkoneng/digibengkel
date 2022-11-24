@@ -16,6 +16,20 @@ module.exports = (sequelize, DataTypes) => {
           values: ["Rotating Part", "Static Part", "Consumable Part"],
         }),
       },
+      vol: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+      },
+      img_url: {
+        type: DataTypes.TEXT,
+      },
+      qty: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      unit: {
+        type: DataTypes.STRING,
+      },
       wor_id: {
         type: DataTypes.UUID,
       },
