@@ -24,8 +24,8 @@ const upload = multer({
   },
   fileFilter: function (req, file, cb) {
     if (
-      file.mimetype === "image/png" &&
-      file.mimetype === "image/jpg" &&
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg" ||
       file.mimetype === "image/jpeg"
     ) {
       cb(null, true);
