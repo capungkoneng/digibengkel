@@ -1,0 +1,1 @@
+20221128	16:52:19	acf64f54-4e51-45a9-98fb-067dc40a05c4	POST	undefined	/api/v1/employe
