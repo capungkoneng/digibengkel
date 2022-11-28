@@ -100,19 +100,19 @@ const getAllEmployees = async (req, res) => {
 const createNewEmployee = async (req, res) => {
   const newArrEmmpen = [];
   const newArrEmchild = [];
-  const newArrEmppel = [];
+  // const newArrEmppel = [];
 
-  if (req.body.emppel.length !== 0) {
-    const arrEmppel = JSON.parse(req.body.emppel);
-    for (let index = 0; index < arrEmppel.length; index++) {
-      newArrEmppel.push({
-        jns_pelatihan: arrEmppel[index].jns_pelatihan,
-        ket: arrEmppel[index].ket,
-        wktu_selesai: arrEmppel[index].wktu_selesai,
-        upload: req.files[index].path,
-      });
-    }
-  }
+  // if (req.body.emppel.length !== 0) {
+  //   const arrEmppel = JSON.parse(req.body.emppel);
+  //   for (let index = 0; index < arrEmppel.length; index++) {
+  //     newArrEmppel.push({
+  //       jns_pelatihan: arrEmppel[index].jns_pelatihan,
+  //       ket: arrEmppel[index].ket,
+  //       wktu_selesai: arrEmppel[index].wktu_selesai,
+  //       upload: req.files[index].path,
+  //     });
+  //   }
+  // }
   if (req.body.empchild.length !== 0) {
     const arrEmchild = JSON.parse(req.body.empchild);
     for (let index = 0; index < arrEmchild.length; index++) {
@@ -160,7 +160,7 @@ const createNewEmployee = async (req, res) => {
         starjoin: new Date(req.body.starjoin),
         sisa_cuti: req.body.sisa_cuti,
         emppen: newArrEmmpen,
-        emppel: newArrEmppel,
+        emppel: req.body.emppel,
         spouse_name: req.body.spouse_name,
         jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
         tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
