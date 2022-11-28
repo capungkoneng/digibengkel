@@ -23,11 +23,15 @@ const upload = multer({
     fileSize: 1024 * 1024 * 5,
   },
   fileFilter: function (req, file, cb) {
-    if (file.mimetype === "image/png" && file.mimetype === "image/jpg") {
+    if (
+      file.mimetype === "image/png" &&
+      file.mimetype === "image/jpg" &&
+      file.mimetype === "image/jpeg"
+    ) {
       cb(null, true);
     } else {
       //prevent the upload
-      var newError = new Error("File type is incorrect mush png or jpg");
+      var newError = new Error("File type is incorrect mush png or jpg and jpeg");
       // newError.name = "MulterError";
       cb(newError, false);
     }
