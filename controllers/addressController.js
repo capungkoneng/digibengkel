@@ -115,9 +115,60 @@ const getAllKel = async (req, res) => {
   }
 };
 
+const getOneCusKontak = async (req, res) => {
+  const search = req.query.search || "";
+
+  try {
+    const result = await model.cus_kontak.findOne({
+      where: {
+        [Op.or]: [
+          {
+            customer_id: {
+              [Op.like]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const getALamatCus = async (req, res) => {
+  const search = req.query.search || "";
+
+  try {
+    const result = await model.address_cus.findOne({
+      where: {
+        [Op.or]: [
+          {
+            cus_id: {
+              [Op.like]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
 module.exports = {
   getAllProv,
   getAllCity,
   getAllKec,
   getAllKel,
+  getOneCusKontak,
+  getALamatCus,
 };

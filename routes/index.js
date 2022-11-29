@@ -165,6 +165,10 @@ router.get("/address/prov", addressController.getAllProv);
 router.get("/address/city", addressController.getAllCity);
 router.get("/address/dis", addressController.getAllKec);
 router.get("/address/subdis", addressController.getAllKel);
+router.get("/cusKontakQuo", addressController.getOneCusKontak);
+router.get("/addressQuo", addressController.getALamatCus);
+
+
 
 /***************************ADRESS********************************* */
 
