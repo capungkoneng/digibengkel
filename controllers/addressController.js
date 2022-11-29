@@ -152,6 +152,8 @@ const getALamatCus = async (req, res) => {
     res.status(500).json({ masagge: error.message });
   }
 };
+
+
 module.exports = {
   getAllProv,
   getAllCity,
