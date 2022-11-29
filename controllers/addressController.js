@@ -121,13 +121,7 @@ const getOneCusKontak = async (req, res) => {
   try {
     const result = await model.cus_kontak.findOne({
       where: {
-        [Op.or]: [
-          {
-            customer_id: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-        ],
+        customer_id : search
       },
     });
     if (result) {
@@ -146,13 +140,7 @@ const getALamatCus = async (req, res) => {
   try {
     const result = await model.address_cus.findOne({
       where: {
-        [Op.or]: [
-          {
-            cus_id: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-        ],
+        cus_id: search
       },
     });
     if (result) {
