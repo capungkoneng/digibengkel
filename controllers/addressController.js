@@ -120,6 +120,7 @@ const getOneCusKontak = async (req, res) => {
 
   try {
     const result = await model.cus_kontak.findAll({
+      as: "cuskontak",
       where: {
         customer_id : search
       },
@@ -139,6 +140,7 @@ const getALamatCus = async (req, res) => {
 
   try {
     const result = await model.address_cus.findAll({
+      as: "addrescus",
       where: {
         cus_id: search
       },
