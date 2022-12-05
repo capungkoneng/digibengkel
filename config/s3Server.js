@@ -16,7 +16,7 @@ const S3 = new AWS.S3(awsConfig);
 const uploadM = multer({
   // storage: multer.memoryStorage(),
   limits: {
-    fileSize: 1024 * 1024 * 5,
+    fileSize: 1024 * 1024 * 10,
   },
   fileFilter: function (req, file, cb) {
     if (file.mimetype === "application/pdf") {

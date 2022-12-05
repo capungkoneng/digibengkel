@@ -19,10 +19,10 @@ const getAllWor = async (req, res) => {
     const totalRows = await model.wor.count();
     const results = await model.wor.findAll({
       include: [
-        {
-          model: model.quo,
-          include: [{ model: model.quodesk, as: "quodesk" }],
-        },
+        // {
+        //   model: model.quo,
+        //   include: [{ model: model.quodesk, as: "quodesk" }],
+        // },
         {
           model: model.employe,
         },

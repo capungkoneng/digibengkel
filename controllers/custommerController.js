@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const Pagination = require("../config/pagging");
 const url = require("url");
+const t = require("../config/transaksi");
 
 const getAllCustommer = async (req, res) => {
   try {
@@ -64,19 +65,12 @@ const getAllCustommer = async (req, res) => {
 };
 
 const createNewCustommer = async (req, res) => {
-  const newArrEmppel = [];
-
-  if (req.body.cuskontak.length !== 0) {
-    const arrEmppel = req.body.cuskontak;
-    for (let index = 0; index < arrEmppel.length; index++) {
-      newArrEmppel.push({
-        contact_person: arrEmppel[index].contact_person,
-        email_person: arrEmppel[index].email_person,
-        contact_person_telp: arrEmppel[index].contact_person_telp,
-      });
-    }
-  }
   try {
+    // create transaction
+    // const transaction = await t.create();
+    // if (!transaction.status && transaction.error) {
+    //   throw transaction.error;
+    // }
     const result = await model.customer.create(
       {
         id: uuidv4(),
@@ -84,12 +78,18 @@ const createNewCustommer = async (req, res) => {
         nama: req.body.nama,
         email: req.body.email,
         addrescus: req.body.addrescus,
-        cuskontak: newArrEmppel,
+        cuskontak: req.body.cuskontak,
       },
       {
         include: ["cuskontak", "addrescus"],
-      }
+      },
+      // { transaction: transaction.data }
     );
+    // commit transaction
+    // const commit = await t.commit(transaction.data);
+    // if (!commit.status && commit.error) {
+    //   throw commit.error;
+    // }
     if (result) {
       res.status(201).json({
         success: true,
@@ -97,6 +97,7 @@ const createNewCustommer = async (req, res) => {
         result: result,
       });
     } else {
+      // await t.rollback(transaction.data);
       res.status(404).json({
         success: false,
         massage: "Gagal nambah data",
