@@ -97,6 +97,7 @@ const createNewCustommer = async (req, res) => {
         result: result,
       });
     } else {
+      // rollback transaction
       await t.rollback(transaction.data);
       res.status(404).json({
         success: false,
