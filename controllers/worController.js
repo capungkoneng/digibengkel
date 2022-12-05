@@ -25,6 +25,7 @@ const getAllWor = async (req, res) => {
         // },
         {
           model: model.employe,
+          attributes: ["nama_karyawan"]
         },
         {
           model: model.part_wor,
