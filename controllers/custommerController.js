@@ -67,10 +67,10 @@ const getAllCustommer = async (req, res) => {
 const createNewCustommer = async (req, res) => {
   try {
     // create transaction
-    // const transaction = await t.create();
-    // if (!transaction.status && transaction.error) {
-    //   throw transaction.error;
-    // }
+    const transaction = await t.create();
+    if (!transaction.status && transaction.error) {
+      throw transaction.error;
+    }
     const result = await model.customer.create(
       {
         id: uuidv4(),
@@ -83,13 +83,13 @@ const createNewCustommer = async (req, res) => {
       {
         include: ["cuskontak", "addrescus"],
       },
-      // { transaction: transaction.data }
+      { transaction: transaction.data }
     );
     // commit transaction
-    // const commit = await t.commit(transaction.data);
-    // if (!commit.status && commit.error) {
-    //   throw commit.error;
-    // }
+    const commit = await t.commit(transaction.data);
+    if (!commit.status && commit.error) {
+      throw commit.error;
+    }
     if (result) {
       res.status(201).json({
         success: true,
@@ -97,7 +97,7 @@ const createNewCustommer = async (req, res) => {
         result: result,
       });
     } else {
-      // await t.rollback(transaction.data);
+      await t.rollback(transaction.data);
       res.status(404).json({
         success: false,
         massage: "Gagal nambah data",
