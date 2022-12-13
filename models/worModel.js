@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         }),
       },
       qty: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         defaultValue: 0,
       },
       unit: {
@@ -71,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       estimasi_hour: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         defaultValue: 0,
       },
       equip_name: {
@@ -98,6 +98,9 @@ module.exports = (sequelize, DataTypes) => {
       upload: {
         type: DataTypes.TEXT,
       },
+      status: {
+        type: DataTypes.STRING,
+      },
       createdAt: {
         allowNull: true,
         type: DataTypes.DATE,
@@ -109,7 +112,7 @@ module.exports = (sequelize, DataTypes) => {
       deletedAt: {
         allowNull: true,
         type: DataTypes.DATE,
-      }
+      },
     },
     {
       tableName: "wor",

@@ -26,7 +26,7 @@ module.exports = {
           type: Sequelize.TEXT,
         },
         qty: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.FLOAT,
           defaultValue: 0,
         },
         unit: {

@@ -69,7 +69,7 @@ module.exports = {
           }),
         },
         qty: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.FLOAT,
           defaultValue: 0,
         },
         unit: {
@@ -85,7 +85,7 @@ module.exports = {
           type: Sequelize.STRING,
         },
         estimasi_hour: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.FLOAT,
           defaultValue: 0,
         },
         equip_name: {
@@ -112,6 +112,9 @@ module.exports = {
         upload: {
           type: Sequelize.TEXT,
         },
+        status: {
+          type: Sequelize.STRING,
+        },
         createdAt: {
           allowNull: true,
           type: Sequelize.DATE,
@@ -123,7 +126,7 @@ module.exports = {
         deletedAt: {
           allowNull: true,
           type: Sequelize.DATE,
-        }
+        },
       })
       .then(() =>
         queryInterface.addIndex("wor", [

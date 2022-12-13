@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const getAllProv = async (req, res) => {
   try {
     const result = await model.ec_provinces.findAll({
-      attributes: ["prov_id", "prov_name"],
+      attributes: ["prov_id", ["prov_name", "name"]],
     });
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
@@ -21,11 +21,11 @@ const getAllCity = async (req, res) => {
 
   try {
     const result = await model.ec_cities.findAll({
-      attributes: ["city_id", "city_name"],
+      attributes: ["city_id", ["city_name", "name"]],
       include: [
         {
           model: model.ec_provinces,
-          attributes: ["prov_id", "prov_name"],
+          attributes: ["prov_id", ["prov_name", "name"]],
           as: "city",
           where: {
             [Op.or]: [
@@ -54,11 +54,11 @@ const getAllKec = async (req, res) => {
 
   try {
     const result = await model.ec_districts.findAll({
-      attributes: ["dis_id", "dis_name"],
+      attributes: ["dis_id", ["dis_name", "name"]],
       include: [
         {
           model: model.ec_cities,
-          attributes: ["city_id", "city_name"],
+          attributes: ["city_id", ["city_name", "name"]],
           as: "distric",
           where: {
             [Op.or]: [
@@ -87,11 +87,11 @@ const getAllKel = async (req, res) => {
 
   try {
     const result = await model.ec_subdistricts.findAll({
-      attributes: ["subdis_id", "subdis_name"],
+      attributes: ["subdis_id", ["subdis_name", "name"]],
       include: [
         {
           model: model.ec_districts,
-          attributes: ["dis_id", "dis_name"],
+          attributes: ["dis_id", ["dis_name", "name"]],
           as: "subdis",
           where: {
             [Op.or]: [
@@ -122,7 +122,7 @@ const getOneCusKontak = async (req, res) => {
     const result = await model.cus_kontak.findAll({
       as: "cuskontak",
       where: {
-        customer_id : search
+        customer_id: search,
       },
     });
     if (result) {
@@ -142,7 +142,7 @@ const getALamatCus = async (req, res) => {
     const result = await model.address_cus.findAll({
       as: "addrescus",
       where: {
-        cus_id: search
+        cus_id: search,
       },
     });
     if (result) {
@@ -154,7 +154,6 @@ const getALamatCus = async (req, res) => {
     res.status(500).json({ masagge: error.message });
   }
 };
-
 
 module.exports = {
   getAllProv,
