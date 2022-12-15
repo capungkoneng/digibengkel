@@ -25,7 +25,7 @@ const getAllWor = async (req, res) => {
         // },
         {
           model: model.employe,
-          attributes: ["nama_karyawan"]
+          attributes: ["nama_karyawan"],
         },
         {
           model: model.part_wor,
@@ -98,6 +98,7 @@ const createNewWor = async (req, res) => {
         scope_of_work: req.body.scope_of_work,
         noted: req.body.noted,
         upload: awsRes.Location,
+        status: req.body.status,
       },
       {
         include: ["partwor"],
