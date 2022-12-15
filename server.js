@@ -20,7 +20,7 @@ app.use(logger);
 app.use(credentials);
 
 //Cross origin middleware
-app.use(cors());
+app.use("*", cors());
 
 //built in middlerware to handle urlencoded data
 //in other words, form data:
