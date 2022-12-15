@@ -225,6 +225,10 @@ const getOneCustommer = async (req, res) => {
           model: model.cus_kontak,
           as: "cuskontak",
         },
+        {
+          model: model.address_cus,
+          as: "addrescus",
+        },
       ],
     });
     if (result) {
