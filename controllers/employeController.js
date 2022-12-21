@@ -378,6 +378,14 @@ const getEmployee = async (req, res) => {
           model: model.emp_pelatihan,
           as: "emppel",
         },
+        {
+          model: model.employchild,
+          as: "empchild",
+        },
+        {
+          model: model.departemen,
+          attributes: ["namadep"],
+        },
       ],
     });
     if (result) {
