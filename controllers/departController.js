@@ -17,7 +17,7 @@ const getDepart = async (req, res) => {
     );
     const totalRows = await model.departemen.count();
     const results = await model.departemen.findAll({
-      attributes: ["id","kodedep", ["namadep", "nama"]],
+      attributes: ["id","kodedep", ["namadep", "name"]],
       where: {
         [Op.or]: [
           {
