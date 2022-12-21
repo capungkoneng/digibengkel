@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       role_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        references: {
+          model: "departemen",
+          key: "namadep",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       username: {
         type: DataTypes.STRING,
@@ -45,6 +50,9 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = (models) => {
     user.belongsTo(models.session, {
       foreignKey: "id",
+    });
+    user.belongsTo(models.departemen, {
+      foreignKey: "namadep",
     });
   };
   return user;

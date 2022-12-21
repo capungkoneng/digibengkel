@@ -2,25 +2,33 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("ec_districts", {
-      dis_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      dis_name: {
-        type: Sequelize.STRING,
-      },
-      city_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "ec_cities",
-          key: "city_id",
+    await queryInterface
+      .createTable("ec_districts", {
+        dis_id: {
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true,
         },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-    });
+        dis_name: {
+          type: Sequelize.STRING,
+        },
+        city_id: {
+          type: Sequelize.INTEGER,
+          references: {
+            model: "ec_cities",
+            key: "city_id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
+        },
+      })
+      .then(() =>
+        queryInterface.addIndex("ec_districts", [
+          "dis_id",
+          "dis_name",
+          "city_id",
+        ])
+      );
   },
 
   async down(queryInterface, Sequelize) {

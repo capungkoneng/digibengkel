@@ -45,8 +45,10 @@ module.exports = {
       })
       .then(() =>
         queryInterface.addIndex("emp_pelatihan", [
+          "id",
           "jns_pelatihan",
           "wktu_selesai",
+          "emp_id_pel",
           "ket",
         ])
       );

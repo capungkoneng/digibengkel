@@ -35,6 +35,7 @@ module.exports = {
       })
       .then(() =>
         queryInterface.addIndex("equipment", [
+          "id",
           "id_equipment",
           "equip_nama",
           "description",

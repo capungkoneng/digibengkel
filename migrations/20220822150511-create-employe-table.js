@@ -128,6 +128,7 @@ module.exports = {
       })
       .then(() =>
         queryInterface.addIndex("employe", [
+          "id",
           "nik",
           "nickname",
           "nama_karyawan",
@@ -141,6 +142,7 @@ module.exports = {
           "kota",
           "starjoin",
           "sisa_cuti",
+          "id_card",
         ])
       );
   },

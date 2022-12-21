@@ -43,6 +43,8 @@ module.exports = {
           "contact_person",
           "email_person",
           "contact_person_telp",
+          "sup_id",
+          "id",
         ]);
       });
   },

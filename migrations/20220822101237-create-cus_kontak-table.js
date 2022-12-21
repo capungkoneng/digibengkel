@@ -40,6 +40,7 @@ module.exports = {
       })
       .then(() => {
         return queryInterface.addIndex("cus_kontak", [
+          "id",
           "contact_person",
           "email_person",
           "contact_person_telp",

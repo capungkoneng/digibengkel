@@ -56,6 +56,8 @@ module.exports = {
           "quo_number",
           "cus_id",
           "upload",
+          "id",
+          "cus_id",
         ])
       );
   },

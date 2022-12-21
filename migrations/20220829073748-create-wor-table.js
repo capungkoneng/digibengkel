@@ -130,6 +130,7 @@ module.exports = {
       })
       .then(() =>
         queryInterface.addIndex("wor", [
+          "id",
           "job",
           "quotation_id_wor",
           "sales_id_wor",

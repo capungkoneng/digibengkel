@@ -44,9 +44,11 @@ module.exports = {
       })
       .then(() =>
         queryInterface.addIndex("emp_pendidikan", [
+          "id",
           "jns_pndidikan",
           "nama_sekolah",
           "thun_lulus",
+          "emp_id",
         ])
       );
   },

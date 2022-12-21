@@ -29,7 +29,7 @@ router.delete(
 
 router.get(
   "/users",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", it: "IT" }),
   usersController.getAllUsers
 );
 router.get("/users/:id", usersController.getUsers);

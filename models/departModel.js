@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        unique: true,
         allowNull: false,
       },
       kodedep: {
@@ -14,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       namadep: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        primaryKey: true,
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
   departemen.associate = (models) => {
     departemen.belongsTo(models.employe, {
       foreignKey: "id",
+    });
+    departemen.hasOne(models.user, {
+      foreignKey: "role_name",
+      sourceKey: "namadep",
     });
   };
   return departemen;

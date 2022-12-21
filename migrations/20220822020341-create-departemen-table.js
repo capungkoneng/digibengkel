@@ -3,24 +3,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface
-      .createTable("customer", {
+      .createTable("departemen", {
         id: {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV4,
           primaryKey: true,
-          allowNull: false,
-        },
-        id_customer: {
-          type: Sequelize.STRING,
           unique: true,
-        },
-        nama: {
-          type: Sequelize.STRING,
-        },
-        email: {
-          type: Sequelize.STRING,
-          email: true,
           allowNull: false,
+        },
+        kodedep: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        namadep: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          unique: true,
+          primaryKey: true,
         },
         createdAt: {
           allowNull: false,
@@ -31,17 +30,12 @@ module.exports = {
           type: Sequelize.DATE,
         },
       })
-      .then(() => {
-        return queryInterface.addIndex("customer", [
-          "id",
-          "id_customer",
-          "nama",
-          "email",
-        ]);
-      });
+      .then(() =>
+        queryInterface.addIndex("departemen", ["id", "kodedep", "namadep"])
+      );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("customer");
+    await queryInterface.dropTable("departemen");
   },
 };

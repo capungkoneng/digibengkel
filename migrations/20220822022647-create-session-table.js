@@ -2,46 +2,54 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("sessions", {
-      id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        primaryKey: true,
-        allowNull: false,
-      },
-      user_id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        references: {
-          model: "users",
-          key: "id",
+    await queryInterface
+      .createTable("sessions", {
+        id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+          allowNull: false,
         },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      ip_address: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-      },
-      is_bloked: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-      },
-      acces_token: {
-        type: Sequelize.STRING,
-      },
-      refresh_token: {
-        type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    });
+        user_id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          references: {
+            model: "users",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
+        },
+        ip_address: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+        },
+        is_bloked: {
+          type: Sequelize.BOOLEAN,
+          allowNull: false,
+        },
+        acces_token: {
+          type: Sequelize.STRING,
+        },
+        refresh_token: {
+          type: Sequelize.STRING,
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+      })
+      .then(() =>
+        queryInterface.addIndex("sessions", [
+          "id",
+          "user_id",
+          "ip_address",
+        ])
+      );
   },
 
   async down(queryInterface, Sequelize) {

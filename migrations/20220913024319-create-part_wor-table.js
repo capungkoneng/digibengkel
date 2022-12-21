@@ -51,7 +51,12 @@ module.exports = {
         },
       })
       .then(() =>
-        queryInterface.addIndex("part_wor", ["nama", "description", "wor_id"])
+        queryInterface.addIndex("part_wor", [
+          "id",
+          "nama",
+          "description",
+          "wor_id",
+        ])
       );
   },
 
