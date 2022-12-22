@@ -120,7 +120,7 @@ router.post(
 );
 router.post(
   "/equipment/part",
-  upload.array("upload"),
+  upload.single("upload"),
   equipController.createPart
 );
 router.put(
