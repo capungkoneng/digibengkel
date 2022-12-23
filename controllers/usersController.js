@@ -30,21 +30,19 @@ const registerNewUsers = async (req, res) => {
   const { role_name, username, email, password, fullName, phone } = req.body;
   try {
     const user = await model.user.findOne({
-      where: { username: req.body.username },
+      where: { username: username },
     });
     if (user) {
       return res.status(403).json({ msg: "User already registered" });
     }
     const hashpass = await argon2.hash(password);
     const result = await model.user.create({
-      id: uuidv4(),
       role_name: role_name,
       username: username,
       password: hashpass,
       email: email,
       fullName: fullName,
       phone: phone,
-      createdAt: new Date(),
     });
     const resResult = {
       role_name: result.role_name,

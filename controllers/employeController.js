@@ -41,7 +41,7 @@ const getAllEmployees = async (req, res) => {
         "tmpt_lahir_spouse",
         "tgllahir_spouse",
         "createdAt",
-        "updatedAt"
+        "updatedAt",
       ],
       where: {
         [Op.or]: [
@@ -98,11 +98,11 @@ const getAllEmployees = async (req, res) => {
 };
 
 const createNewEmployee = async (req, res) => {
-  // const newArrEmmpen = [];
-  // const newArrEmchild = [];
+  const newArrEmmpen = [];
+  const newArrEmchild = [];
   const newArrEmppel = [];
 
-  if (req.body.emppel.length !== 0) {
+  if (req.body.emppel) {
     const arrEmppel = JSON.parse(req.body.emppel);
     for (let index = 0; index < arrEmppel.length; index++) {
       newArrEmppel.push({
@@ -113,27 +113,27 @@ const createNewEmployee = async (req, res) => {
       });
     }
   }
-  // if (req.body.empchild.length !== 0) {
-  //   const arrEmchild = JSON.parse(req.body.empchild);
-  //   for (let index = 0; index < arrEmchild.length; index++) {
-  //     newArrEmchild.push({
-  //       name_child: arrEmchild[index].name_child,
-  //       jenis_kelamin: arrEmchild[index].jenis_kelamin,
-  //       tmpt_lahir: arrEmchild[index].tmpt_lahir,
-  //       tgllahir: arrEmchild[index].tgllahir,
-  //     });
-  //   }
-  // }
-  // if (req.body.emppen.length !== 0) {
-  //   const arrEmmpen = JSON.parse(req.body.emppen);
-  //   for (let index = 0; index < arrEmmpen.length; index++) {
-  //     newArrEmmpen.push({
-  //       jns_pndidikan: arrEmmpen[index].jns_pndidikan,
-  //       nama_sekolah: arrEmmpen[index].nama_sekolah,
-  //       thun_lulus: arrEmmpen[index].thun_lulus,
-  //     });
-  //   }
-  // }
+  if (req.body.empchild) {
+    const arrEmchild = JSON.parse(req.body.empchild);
+    for (let index = 0; index < arrEmchild.length; index++) {
+      newArrEmchild.push({
+        name_child: arrEmchild[index].name_child,
+        jenis_kelamin: arrEmchild[index].jenis_kelamin,
+        tmpt_lahir: arrEmchild[index].tmpt_lahir,
+        tgllahir: arrEmchild[index].tgllahir,
+      });
+    }
+  }
+  if (req.body.emppen) {
+    const arrEmmpen = JSON.parse(req.body.emppen);
+    for (let index = 0; index < arrEmmpen.length; index++) {
+      newArrEmmpen.push({
+        jns_pndidikan: arrEmmpen[index].jns_pndidikan,
+        nama_sekolah: arrEmmpen[index].nama_sekolah,
+        thun_lulus: arrEmmpen[index].thun_lulus,
+      });
+    }
+  }
 
   try {
     const result = await model.employe.create(
@@ -152,20 +152,20 @@ const createNewEmployee = async (req, res) => {
         kodepos: req.body.kodepos,
         phone: req.body.phone,
         tmptlahir: req.body.tmptlahir,
-        tgllahir: new Date(req.body.tgllahir),
+        tgllahir: req.body.tgllahir,
         id_card: req.body.id_card,
         karyawan_status: req.body.karyawan_status,
         jenis_kelamin: req.body.jenis_kelamin,
         status: req.body.status,
-        starjoin: new Date(req.body.starjoin),
+        starjoin: req.body.starjoin,
         sisa_cuti: req.body.sisa_cuti,
-        emppen: req.body.emppen,
+        emppen: newArrEmmpen,
         emppel: newArrEmppel,
         spouse_name: req.body.spouse_name,
         jenis_kelamin_spouse: req.body.jenis_kelamin_spouse,
         tmpt_lahir_spouse: req.body.tmpt_lahir_spouse,
         tgllahir_spouse: req.body.tgllahir_spouse,
-        empchild: req.body.empchild,
+        empchild: newArrEmchild,
       },
       {
         include: ["emppen", "emppel", "empchild"],

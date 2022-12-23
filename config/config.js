@@ -10,12 +10,12 @@ module.exports = {
       "dbdigibengkel.cfgxkpw7j2vp.ap-northeast-1.rds.amazonaws.com",
     dialect: "postgres",
     port: "5432",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false,
+    //   },
+    // },
   },
   test: {
     username: process.env.DB_USER || "postgres",
@@ -26,12 +26,12 @@ module.exports = {
       "dbdigibengkel.cfgxkpw7j2vp.ap-northeast-1.rds.amazonaws.com",
     dialect: "postgres",
     port: "5432",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false,
+    //   },
+    // },
   },
   production: {
     username: process.env.DB_USER || "postgres",
@@ -42,11 +42,11 @@ module.exports = {
       "dbdigibengkel.cfgxkpw7j2vp.ap-northeast-1.rds.amazonaws.com",
     dialect: "postgres",
     port: "5432",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false,
+    //   },
+    // },
   },
 };

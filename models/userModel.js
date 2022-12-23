@@ -51,8 +51,9 @@ module.exports = (sequelize, DataTypes) => {
     user.belongsTo(models.session, {
       foreignKey: "id",
     });
-    user.belongsTo(models.departemen, {
+    user.hasOne(models.departemen, {
       foreignKey: "namadep",
+      sourceKey: "role_name",
     });
   };
   return user;

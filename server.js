@@ -20,7 +20,7 @@ app.use(logger);
 app.use(credentials);
 
 //Cross origin middleware
-app.use("*", cors());
+app.use("*",cors());
 
 //built in middlerware to handle urlencoded data
 //in other words, form data:
@@ -49,7 +49,7 @@ app.use("/api/v1", api);
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 3000, () =>
+app.listen(process.env.PORT || 4000, () =>
   // console.log(`Server Berjalan di: ${ip.address()}:${process.env.PORT}`)
   console.log(`Server Berjalan http://localhost:${process.env.PORT}`)
 );

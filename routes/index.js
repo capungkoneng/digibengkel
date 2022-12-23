@@ -63,7 +63,7 @@ router.put("/customer/address/:id", custommerController.updateCusAdrees);
 router.get("/employe", employeController.getAllEmployees);
 router.post(
   "/employe",
-  upload.array("upload"),
+  upload.array("upload",1000),
   employeController.createNewEmployee
 );
 router.put("/employe/:id", employeController.updateEmployee);
@@ -167,8 +167,6 @@ router.get("/address/dis", addressController.getAllKec);
 router.get("/address/subdis", addressController.getAllKel);
 router.get("/cusKontakQuo", addressController.getOneCusKontak);
 router.get("/addressQuo", addressController.getALamatCus);
-
-
 
 /***************************ADRESS********************************* */
 

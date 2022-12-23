@@ -60,6 +60,9 @@ const getAllequip = async (req, res) => {
 };
 
 const createNewEquip = async (req, res) => {
+  if (!req.file) {
+    return res.status(404).json({ msg: "No file" });
+  }
   try {
     const result = await model.equipment.create({
       id: uuidv4(),

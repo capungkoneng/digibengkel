@@ -36,9 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     departemen.belongsTo(models.employe, {
       foreignKey: "id",
     });
-    departemen.hasOne(models.user, {
-      foreignKey: "role_name",
-      sourceKey: "namadep",
+    departemen.belongsTo(models.user, {
+      foreignKey: "namadep",
     });
   };
   return departemen;

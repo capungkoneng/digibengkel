@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       tgllahir: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE(6),
         allowNull: false,
       },
       id_card: {
@@ -89,7 +89,7 @@ module.exports = (sequelize, DataTypes) => {
         }),
       },
       starjoin: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE(6),
         allowNull: false,
       },
       sisa_cuti: {
@@ -110,7 +110,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       tgllahir_spouse: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE(6),
         allowNull: false,
       },
       createdAt: {
