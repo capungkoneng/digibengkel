@@ -109,7 +109,7 @@ const createNewEmployee = async (req, res) => {
         jns_pelatihan: arrEmppel[index].jns_pelatihan,
         ket: arrEmppel[index].ket,
         wktu_selesai: arrEmppel[index].wktu_selesai,
-        upload: req.files[index].path,
+        upload: arrEmppel[index].upload,
       });
     }
   }
