@@ -90,7 +90,7 @@ const createNewEquip = async (req, res) => {
 
 const createPart = async (req, res) => {
   try {
-    const result = await model.part.create({
+    const result = await model.part.bulkCreate({
       part_nama: req.body.part_nama,
       description: req.body.description,
       equip_id: req.body.equip_id,

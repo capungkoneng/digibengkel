@@ -102,10 +102,9 @@ const createNewEmployee = async (req, res) => {
   const newArrEmchild = [];
   const newArrEmppel = [];
 
-  if(!req.files){
-    return res.status(404).json({msg: "tidak ada gambar"})
+  if (!req.files) {
+    return res.status(404).json({ msg: "tidak ada gambar" });
   }
-  console.log(req.files, "oko");
 
   if (req.body.emppel) {
     const arrEmppel = JSON.parse(req.body.emppel);

@@ -118,9 +118,30 @@ const addMrnama = async (req, res) => {
   }
 };
 
+const addMrMaster = async (req, res) => {
+  try {
+    const result = await model.mr_master.create(req.body);
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil nambah data",
+        result: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "Gagal nambah data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 module.exports = {
   addMrtype,
   addMrnama,
   getAllMrtype,
   getAllMrnama,
+  addMrMaster,
 };

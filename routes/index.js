@@ -176,6 +176,7 @@ router.get("/addressQuo", addressController.getALamatCus);
 router.get("/mrtype", mrController.getAllMrtype);
 router.post("/mrtype", mrController.addMrtype);
 router.post("/mrnama", mrController.addMrnama);
+router.post("/mrmaster", mrController.addMrMaster);
 router.get("/mrnama/:id", mrController.getAllMrnama);
 
 /***************************MR********************************* */
