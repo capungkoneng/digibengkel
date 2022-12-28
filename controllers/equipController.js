@@ -89,12 +89,26 @@ const createNewEquip = async (req, res) => {
 };
 
 const createPart = async (req, res) => {
+  const newArrPart = [];
+
+  if (!req.files) {
+    return res.status(404).json({ msg: "tidak ada gambar" });
+  }
+
+  if (req.body.part) {
+    const arrPart = JSON.parse(req.body.part);
+    for (let index = 0; index < arrPart.length; index++) {
+      newArrPart.push({
+        part_nama: arrPart[index].part_nama,
+        description: arrPart[index].description,
+        equip_id: arrPart[index].equip_id,
+        upload: req.files[index].path,
+      });
+    }
+  }
   try {
     const result = await model.part.bulkCreate({
-      part_nama: req.body.part_nama,
-      description: req.body.description,
-      equip_id: req.body.equip_id,
-      upload: req.file.path,
+      part: newArrPart,
     });
     if (result) {
       res.status(201).json({
