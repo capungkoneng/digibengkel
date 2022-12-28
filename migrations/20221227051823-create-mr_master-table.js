@@ -3,16 +3,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface
-      .createTable("mr_type", {
+      .createTable("mr_master", {
         id: {
-          type: Sequelize.INTEGER,
-          autoIncrement: true,
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
           primaryKey: true,
+          allowNull: false,
         },
-        kd_mrtype: {
+        mr_type: {
+          type: Sequelize.STRING,
+        },
+        mr_nama: {
           type: Sequelize.STRING,
         },
         nama: {
+          type: Sequelize.STRING,
+        },
+        satuan: {
           type: Sequelize.STRING,
         },
         createdAt: {
@@ -25,11 +32,16 @@ module.exports = {
         },
       })
       .then(() =>
-        queryInterface.addIndex("mr_type", ["id", "kd_mrtype", "nama"])
+        queryInterface.addIndex("mr_master", [
+          "nama",
+          "id",
+          "mr_nama",
+          "mr_type",
+        ])
       );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("mr_type");
+    await queryInterface.dropTable("mr_master");
   },
 };

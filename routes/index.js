@@ -13,6 +13,7 @@ const qutationController = require("../controllers/quotationController");
 const equipController = require("../controllers/equipController");
 const worController = require("../controllers/worController");
 const addressController = require("../controllers/addressController");
+const mrController = require("../controllers/mrController");
 
 /***************************AUTH********************************* */
 
@@ -63,7 +64,7 @@ router.put("/customer/address/:id", custommerController.updateCusAdrees);
 router.get("/employe", employeController.getAllEmployees);
 router.post(
   "/employe",
-  upload.array("upload",1000),
+  upload.array("upload", 1000),
   employeController.createNewEmployee
 );
 router.put("/employe/:id", employeController.updateEmployee);
@@ -169,5 +170,14 @@ router.get("/cusKontakQuo", addressController.getOneCusKontak);
 router.get("/addressQuo", addressController.getALamatCus);
 
 /***************************ADRESS********************************* */
+
+/***************************MR********************************* */
+
+router.get("/mrtype", mrController.getAllMrtype);
+router.post("/mrtype", mrController.addMrtype);
+router.post("/mrnama", mrController.addMrnama);
+router.get("/mrnama/:id", mrController.getAllMrnama);
+
+/***************************MR********************************* */
 
 module.exports = router;
