@@ -97,7 +97,7 @@ router.get("/supplier/:id", supplierController.getSupplier);
 router.get("/quotation", qutationController.getAllQuo);
 router.post(
   "/quotation",
-  uploadto.uploadM.single("upload"),
+  upload.single("upload"),
   qutationController.createNewQuo
 );
 router.put(

@@ -284,7 +284,7 @@ const updateEmppel = async (req, res) => {
         jns_pelatihan: req.body.jns_pelatihan,
         wktu_selesai: new Date(req.body.wktu_selesai),
         ket: req.body.ket,
-        upload: req.file.path,
+        upload: req.files?.path ? req.files?.path : req.body.upload,
       },
       {
         where: {

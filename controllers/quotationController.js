@@ -76,11 +76,11 @@ const getAllQuo = async (req, res) => {
 const createNewQuo = async (req, res) => {
   // const newPdf = [];
 
-  const buffer = req.file.buffer;
-  const awsRes = await uploadToS3.uploadToS3(buffer);
-  if (!awsRes) {
-    return res.status(500).json({ msg: "Somthing worng" });
-  }
+  // const buffer = req.file.buffer;
+  // const awsRes = await uploadToS3.uploadToS3(buffer);
+  // if (!awsRes) {
+  //   return res.status(500).json({ msg: "Somthing worng" });
+  // }
   // if (req.files && req.files.length > 0) {
   //   for (var i = 0; i < req.files.length; i++) {
   //     // console.log(req.files[i]);
@@ -103,7 +103,7 @@ const createNewQuo = async (req, res) => {
         contact: req.body.contact,
         description: req.body.description,
         tanggal_quo: new Date(req.body.tanggal_quo),
-        upload: awsRes.Location,
+        upload: req.file.path,
       },
       {
         include: ["quodesk"],

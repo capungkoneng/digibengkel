@@ -95,7 +95,7 @@ const createPart = async (req, res) => {
     return res.status(404).json({ msg: "tidak ada gambar" });
   }
 
-  if (req.body.part) {
+  if (req.body.part.length !== 0) {
     const arrPart = JSON.parse(req.body.part);
     for (let index = 0; index < arrPart.length; index++) {
       newArrPart.push({
@@ -107,9 +107,7 @@ const createPart = async (req, res) => {
     }
   }
   try {
-    const result = await model.part.bulkCreate({
-      part: newArrPart,
-    });
+    const result = await model.part.bulkCreate(newArrPart);
     if (result) {
       res.status(201).json({
         success: true,
@@ -128,6 +126,7 @@ const createPart = async (req, res) => {
 };
 
 const updateEquip = async (req, res) => {
+  
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
   try {
@@ -136,7 +135,7 @@ const updateEquip = async (req, res) => {
         id_equipment: req.body.id_equipment,
         equip_nama: req.body.equip_nama,
         description: req.body.description,
-        upload: req.file.path,
+        upload: req.files?.path ? req.files?.path : req.body.upload,
       },
       {
         where: {
@@ -145,6 +144,7 @@ const updateEquip = async (req, res) => {
         returning: true,
       }
     );
+
     if (result) {
       res.status(201).json({
         success: true,
@@ -170,7 +170,7 @@ const updateEquipPart = async (req, res) => {
       {
         part_nama: req.body.part_nama,
         description: req.body.description,
-        upload: req.file.path,
+        upload: req.files?.path ? req.files?.path : req.body.upload,
       },
       {
         where: {
