@@ -21,21 +21,17 @@ module.exports = {
         },
         name_child: {
           type: Sequelize.STRING,
-          allowNull: false,
         },
         jenis_kelamin: {
           type: Sequelize.ENUM({
             values: ["Laki-Laki", "Perempuan"],
           }),
-          allowNull: false,
         },
         tmpt_lahir: {
           type: Sequelize.STRING,
-          allowNull: false,
         },
         tgllahir: {
           type: Sequelize.DATE,
-          allowNull: false,
         },
         createdAt: {
           allowNull: false,

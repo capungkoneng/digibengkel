@@ -12,15 +12,12 @@ module.exports = {
         },
         jns_pelatihan: {
           type: Sequelize.STRING,
-          allowNull: false,
         },
         wktu_selesai: {
           type: Sequelize.DATE,
-          allowNull: false,
         },
         ket: {
           type: Sequelize.TEXT,
-          allowNull: false,
         },
         upload: {
           type: Sequelize.TEXT,

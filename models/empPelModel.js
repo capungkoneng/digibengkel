@@ -10,15 +10,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         jns_pelatihan: {
           type: DataTypes.STRING,
-          allowNull: false,
         },
         wktu_selesai: {
           type: DataTypes.DATE,
-          allowNull: false,
         },
         ket: {
           type: DataTypes.TEXT,
-          allowNull: false,
         },
         upload: {
           type: DataTypes.TEXT,

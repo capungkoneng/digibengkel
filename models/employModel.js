@@ -15,12 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       nickname: {
         type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
       },
       nama_karyawan: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       departement_id: {
         type: DataTypes.UUID,
@@ -34,39 +31,30 @@ module.exports = (sequelize, DataTypes) => {
       },
       alamat: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       kota: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       provinsi: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       kecamatan: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       kelurahan: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       kodepos: {
         type: DataTypes.FLOAT,
-        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       tmptlahir: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       tgllahir: {
         type: DataTypes.DATE(6),
-        allowNull: false,
       },
       id_card: {
         type: DataTypes.BIGINT,
@@ -90,12 +78,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       starjoin: {
         type: DataTypes.DATE(6),
-        allowNull: false,
       },
       sisa_cuti: {
         type: DataTypes.FLOAT,
         defaultValue: 0,
-        allowNull: false,
       },
       spouse_name: {
         type: DataTypes.STRING,
@@ -103,15 +89,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       jenis_kelamin_spouse: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       tmpt_lahir_spouse: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       tgllahir_spouse: {
         type: DataTypes.DATE(6),
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,
