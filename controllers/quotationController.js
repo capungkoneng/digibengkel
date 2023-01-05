@@ -91,6 +91,18 @@ const createNewQuo = async (req, res) => {
   //   }
   // }
   // console.log(req.files);
+  const newArrQuo = [];
+  if (req.body.quodesk) {
+    const arrQuota = JSON.parse(req.body.quodesk);
+    for (let index = 0; index < arrQuota.length; index++) {
+      newArrQuo.push({
+        item: arrQuota[index].item,
+        vol: arrQuota[index].vol,
+        unit: arrQuota[index].unit,
+        img_url: arrQuota[index].img_url,
+      });
+    }
+  }
   try {
     const result = await model.quo.create(
       {
