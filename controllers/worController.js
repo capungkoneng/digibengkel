@@ -60,11 +60,11 @@ const getAllWor = async (req, res) => {
 };
 
 const createNewWor = async (req, res) => {
-  const buffer = req.file.buffer;
-  const awsRes = await uploadToS3.uploadToS3(buffer);
-  if (!awsRes) {
-    return res.status(500).json({ msg: "Somthing worng" });
-  }
+  // const buffer = req.file.buffer;
+  // const awsRes = await uploadToS3.uploadToS3(buffer);
+  // if (!awsRes) {
+  //   return res.status(500).json({ msg: "Somthing worng" });
+  // }
   try {
     const result = await model.wor.create(
       {
@@ -97,7 +97,7 @@ const createNewWor = async (req, res) => {
         power: req.body.power,
         scope_of_work: req.body.scope_of_work,
         noted: req.body.noted,
-        upload: awsRes.Location,
+        upload: req.file.path,
         status: req.body.status,
       },
       {

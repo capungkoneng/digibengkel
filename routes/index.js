@@ -102,7 +102,7 @@ router.post(
 );
 router.put(
   "/quotation/:id",
-  uploadto.uploadM.single("upload"),
+  upload.single("upload"),
   qutationController.updateQuo
 );
 router.put("/quotation/quodes/:id", qutationController.updateQuoDesk);
@@ -147,12 +147,12 @@ router.delete("/equipment/part/:id", equipController.delPart);
 router.get("/wor", worController.getAllWor);
 router.post(
   "/wor",
-  uploadto.uploadM.single("upload"),
+  upload.single("upload"),
   worController.createNewWor
 );
 router.put(
   "/wor/:id",
-  uploadto.uploadM.single("upload"),
+  upload.single("upload"),
   worController.updateWor
 );
 router.delete("/wor/:id", worController.deleteWor);

@@ -90,7 +90,6 @@ const createNewQuo = async (req, res) => {
   //     })
   //   }
   // }
-  // console.log(req.files);
   const newArrQuo = [];
   if (req.body.quodesk) {
     const arrQuota = JSON.parse(req.body.quodesk);
@@ -143,11 +142,11 @@ const updateQuo = async (req, res) => {
   let id = req.params.id;
   if (!id) return res.status(404).json({ msg: "id tidak ditemukan" });
 
-  const buffer = req.file.buffer;
-  const awsRes = await uploadToS3.uploadToS3(buffer);
-  if (!awsRes) {
-    return res.status(500).json({ msg: "Somthing worng" });
-  }
+  // const buffer = req.file.buffer;
+  // const awsRes = await uploadToS3.uploadToS3(buffer);
+  // if (!awsRes) {
+  //   return res.status(500).json({ msg: "Somthing worng" });
+  // }
   try {
     const result = await model.quo.update(
       {
@@ -156,7 +155,7 @@ const updateQuo = async (req, res) => {
         contact: req.body.contact,
         description: req.body.description,
         tanggal_quo: new Date(req.body.tanggal_quo),
-        upload: awsRes.Location,
+        upload: req.files?.path ? req.files?.path : req.body.upload,
       },
       {
         where: {
